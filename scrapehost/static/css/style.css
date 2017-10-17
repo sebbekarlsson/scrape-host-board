@@ -24,10 +24,7 @@
     display: flex;
     /* NEW, Spec - Firefox, Chrome, Opera */
     flex-direction: row;
-    font-family: 'Source Sans Pro', sans-serif;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: white; }
+    font-family: 'Source Sans Pro', sans-serif; }
     .navbar .site-content section {
       flex: 1;
       display: -webkit-box;
@@ -239,6 +236,8 @@ p, a {
   position: relative; }
   @media screen and (max-width: 1024px) {
     .site-content {
+      max-width: 1024px;
+      width: auto !important;
       box-sizing: border-box;
       padding-left: 0.5rem;
       padding-right: 0.5rem; } }

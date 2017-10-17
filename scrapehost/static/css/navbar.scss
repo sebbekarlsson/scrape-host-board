@@ -31,9 +31,6 @@ $nav_height: 64px;
         @include display-flex();
         flex-direction: row;
         @include font-default();
-        border-bottom-style: solid;
-        border-bottom-width: 1px;
-        border-bottom-color: white;
 
         section {
             flex: 1;

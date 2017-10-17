@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
             var opacity = Math.min(0.5, y * 0.002);
             var rgba = 'rgba(0, 0, 0, '+ opacity +')';
 
-            navbar.querySelector('.site-content').style.backgroundColor = rgba;
+            navbar.style.backgroundColor = rgba;
         }, 0);
     }
 });

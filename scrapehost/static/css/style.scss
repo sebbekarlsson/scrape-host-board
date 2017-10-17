@@ -20,6 +20,8 @@
     position: relative;
 
     @include media-ipad-pro {
+        max-width: 1024px;
+        width: auto !important;
         box-sizing: border-box;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
