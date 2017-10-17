@@ -16,6 +16,12 @@
         width: 1024px;
     }
 
+    section:nth-child(1) {
+        .btn {
+            margin-top: 1rem;
+        }
+    }
+
     section:nth-child(2) {
         @include display-flex();
         justify-content: center;

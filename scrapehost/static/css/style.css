@@ -69,6 +69,8 @@
   flex-direction: column; }
   .hero .site-content {
     width: 1024px; }
+  .hero section:nth-child(1) .btn {
+    margin-top: 1rem; }
   .hero section:nth-child(2) {
     display: -webkit-box;
     /* OLD - iOS 6-, Safari 3.1-6, BB7 */
