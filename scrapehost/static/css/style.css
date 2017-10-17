@@ -121,6 +121,19 @@ h1, h2, h3, h4, h5, h6 {
 p {
   margin-bottom: 0.5rem; }
 
+.site-section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: white; }
+
+.text-content {
+  font-family: 'Source Sans Pro', sans-serif; }
+  .text-content h2 {
+    font-size: 2em;
+    font-weight: 400; }
+  .text-content p {
+    font-weight: 200; }
+
 * {
   margin: 0;
   padding: 0; }
