@@ -5,6 +5,15 @@
   top: 0;
   left: 0;
   z-index: 80; }
+  @media screen and (min-width: 1024px) {
+    .navbar .btn-primary {
+      background-color: white !important;
+      color: black !important;
+      min-width: 99px !important; } }
+  @media screen and (max-width: 1024px) {
+    .navbar .btn-primary {
+      background: none !important;
+      min-width: auto !important; } }
   .navbar .site-content {
     display: -webkit-box;
     /* OLD - iOS 6-, Safari 3.1-6, BB7 */

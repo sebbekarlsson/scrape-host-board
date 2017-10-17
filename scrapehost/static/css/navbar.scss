@@ -1,4 +1,5 @@
 @import 'mixins.scss';
+@import 'variables.scss';
 
 
 $nav_height: 64px;
@@ -10,6 +11,21 @@ $nav_height: 64px;
     top: 0;
     left: 0;
     z-index: 80;
+
+    @include media-desktop {
+        .btn-primary {
+            background-color: white !important;
+            color: black !important;
+            min-width: 99px !important;
+        }
+    }
+
+    @include media-ipad-pro {
+        .btn-primary {
+            background: none !important;
+            min-width: auto !important;
+        }
+    }
 
     .site-content {
         @include display-flex();
