@@ -98,7 +98,10 @@
   /* NEW, Spec - Firefox, Chrome, Opera */
   flex-direction: row; }
   .split section {
-    flex: 1; }
+    flex: 1;
+    box-sizing: border-box;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem; }
 
 .btn {
   display: inline-block;
@@ -184,6 +187,9 @@ p, a {
   display: flex;
   /* NEW, Spec - Firefox, Chrome, Opera */
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */
