@@ -1,34 +1,47 @@
 @import 'mixins.scss';
 
 
-$nav_height: 48px;
+$nav_height: 64px;
 
 .navbar {
     width: 100%;
     height: $nav_height;
-    @include display-flex();
-    flex-direction: row;
+    position: fixed;
+    top: 0;
+    left: 0;
 
-    section {
-        flex: 1;
+    .site-content {
         @include display-flex();
         flex-direction: row;
+        @include font-default();
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: white;
 
-        a {
-            line-height: $nav_height;
-            display: inline-block;
-            height: 100%;
-            padding-left: 0.8rem;
-            padding-right: 0.8rem;
-            text-align: center;
+        section {
+            flex: 1;
+            @include display-flex();
+            flex-direction: row;
+
+            a {
+                line-height: $nav_height;
+                display: inline-block;
+                height: 100%;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                text-align: center;
+                text-transform: capitalize;
+                text-decoration: none;
+                color: white;
+            }
         }
-    }
 
-    section:nth-child(1) {
-        justify-content: flex-begin;
-    }
+        section:nth-child(1) {
+            justify-content: flex-begin;
+        }
 
-    section:nth-child(2) {
-        justify-content: flex-end;
+        section:nth-child(2) {
+            justify-content: flex-end;
+        }
     }
 }

@@ -1,0 +1,11 @@
+@import 'mixins.scss';
+
+
+.split {
+    @include display-flex();
+    flex-direction: row;
+
+    section {
+        flex: 1;
+    }
+}

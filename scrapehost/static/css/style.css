@@ -1,6 +1,90 @@
 .navbar {
   width: 100%;
-  height: 48px;
+  height: 64px;
+  position: fixed;
+  top: 0;
+  left: 0; }
+  .navbar .site-content {
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+    flex-direction: row;
+    font-family: 'Source Sans Pro', sans-serif;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: white; }
+    .navbar .site-content section {
+      flex: 1;
+      display: -webkit-box;
+      /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+      display: -ms-flexbox;
+      /* TWEENER - IE 10 */
+      display: -webkit-flex;
+      /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+      display: flex;
+      /* NEW, Spec - Firefox, Chrome, Opera */
+      flex-direction: row; }
+      .navbar .site-content section a {
+        line-height: 64px;
+        display: inline-block;
+        height: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        text-align: center;
+        text-transform: capitalize;
+        text-decoration: none;
+        color: white; }
+    .navbar .site-content section:nth-child(1) {
+      justify-content: flex-begin; }
+    .navbar .site-content section:nth-child(2) {
+      justify-content: flex-end; }
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  background: #43cea2;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #185a9d, #43cea2);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #185a9d, #43cea2);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+  .hero .site-content {
+    width: 1024px; }
+  .hero section:nth-child(2) {
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; }
+    .hero section:nth-child(2) h1 {
+      font-size: 5em;
+      text-transform: uppercase; }
+
+.split {
   display: -webkit-box;
   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
   display: -ms-flexbox;
@@ -10,28 +94,32 @@
   display: flex;
   /* NEW, Spec - Firefox, Chrome, Opera */
   flex-direction: row; }
-  .navbar section {
-    flex: 1;
-    display: -webkit-box;
-    /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-    display: -ms-flexbox;
-    /* TWEENER - IE 10 */
-    display: -webkit-flex;
-    /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-    display: flex;
-    /* NEW, Spec - Firefox, Chrome, Opera */
-    flex-direction: row; }
-    .navbar section a {
-      line-height: 48px;
-      display: inline-block;
-      height: 100%;
-      padding-left: 0.8rem;
-      padding-right: 0.8rem;
-      text-align: center; }
-  .navbar section:nth-child(1) {
-    justify-content: flex-begin; }
-  .navbar section:nth-child(2) {
-    justify-content: flex-end; }
+  .split section {
+    flex: 1; }
+
+.btn {
+  display: inline-block;
+  min-width: 128px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  text-decoration: none;
+  background: none;
+  border: none;
+  outline: none;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-family: 'Source Sans Pro', sans-serif;
+  border-radius: 32px; }
+  .btn.btn-primary {
+    background-color: #6CCAA3;
+    color: white; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.5rem; }
+
+p {
+  margin-bottom: 0.5rem; }
 
 * {
   margin: 0;
@@ -39,6 +127,7 @@
 
 .site-content {
   max-width: 1024px;
-  margin: auto; }
+  margin: auto;
+  position: relative; }
 
 /*# sourceMappingURL=style.css.map */

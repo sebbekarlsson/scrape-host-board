@@ -1,4 +1,8 @@
 @import 'navbar.scss';
+@import 'hero.scss';
+@import 'split.scss';
+@import 'inputs.scss';
+@import 'align.scss';
 
 
 * {
@@ -9,4 +13,5 @@
 .site-content {
     max-width: 1024px;
     margin: auto;
+    position: relative;
 }

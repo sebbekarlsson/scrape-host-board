@@ -1,0 +1,24 @@
+@import 'mixins.scss';
+@import 'variables.scss';
+
+
+.btn {
+    display: inline-block;
+    min-width: 128px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    text-decoration: none;
+    background: none;
+    border: none;
+    outline: none;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    @include font-default();
+    border-radius: 32px;
+
+    &.btn-primary {
+        background-color: $color_main;
+        color: white;
+    }
+}

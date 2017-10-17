@@ -2,8 +2,8 @@
 
 
 {% block body %}
-    <div class='site-content'>
-        <nav class='navbar'>
+    <nav class='navbar'>
+        <div class='site-content'>
             <section>
                 <a href='/'>logotype</a>
             </section>
@@ -11,8 +11,8 @@
                 <a href='/register'>register</a>
                 <a href='/register'>login</a>
             </section>
-        </nav>
-    </div>
+        </div>
+    </nav>
     {% block site_content %}
     {% endblock %}
 {% endblock %}
