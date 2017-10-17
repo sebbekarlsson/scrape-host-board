@@ -126,13 +126,19 @@ p {
   padding-bottom: 4rem;
   background-color: white; }
 
-.text-content {
+h1, h2, h3, h4, h5, h6, p, a {
+  -webkit-font-smoothing: antialiased; }
+
+h2 {
+  font-size: 2em;
+  font-weight: 400;
   font-family: 'Source Sans Pro', sans-serif; }
-  .text-content h2 {
-    font-size: 2em;
-    font-weight: 400; }
-  .text-content p {
-    font-weight: 200; }
+
+p, a {
+  font-weight: 200;
+  line-height: 1.4em;
+  letter-spacing: 0.02em;
+  font-family: 'Source Sans Pro', sans-serif; }
 
 * {
   margin: 0;
