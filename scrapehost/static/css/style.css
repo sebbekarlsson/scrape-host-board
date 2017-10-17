@@ -92,9 +92,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: column; }
-    .hero section:nth-child(2) h1 {
-      font-size: 5em;
-      text-transform: uppercase; }
   @media screen and (max-width: 1024px) {
     .hero section:nth-child(1) {
       text-align: center; }
