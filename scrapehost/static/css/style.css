@@ -160,6 +160,43 @@ p, a {
   letter-spacing: 0.02em;
   font-family: 'Source Sans Pro', sans-serif; }
 
+.footer {
+  height: 256px;
+  background-color: #6CCAA3;
+  color: white;
+  font-family: 'Source Sans Pro', sans-serif; }
+  .footer ul {
+    list-style: none; }
+  .footer a {
+    color: white; }
+  .footer h4 {
+    font-size: 1.3em; }
+  .footer p, .footer a {
+    font-size: 1.1em; }
+  .footer .site-content {
+    height: 100%; }
+    .footer .site-content .split {
+      height: 100%; }
+      .footer .site-content .split section:nth-child(1) {
+        text-align: left; }
+      .footer .site-content .split section:nth-child(2) {
+        text-align: right; }
+      .footer .site-content .split section {
+        display: -webkit-box;
+        /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+        display: -ms-flexbox;
+        /* TWEENER - IE 10 */
+        display: -webkit-flex;
+        /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+        display: flex;
+        /* NEW, Spec - Firefox, Chrome, Opera */
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: wrap; }
+      @media screen and (max-width: 1024px) {
+        .footer .site-content .split section:nth-child(2) {
+          text-align: left; } }
+
 * {
   margin: 0;
   padding: 0; }
