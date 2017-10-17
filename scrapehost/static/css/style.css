@@ -68,7 +68,7 @@
   align-items: center;
   flex-direction: column; }
   .hero .site-content {
-    width: 1024px; }
+    max-width: 1024px; }
   .hero section:nth-child(1) .btn {
     margin-top: 1rem; }
   .hero section:nth-child(2) {
@@ -86,6 +86,11 @@
     .hero section:nth-child(2) h1 {
       font-size: 5em;
       text-transform: uppercase; }
+  @media screen and (max-width: 1024px) {
+    .hero section:nth-child(1) {
+      text-align: center; }
+    .hero section:nth-child(2) {
+      display: none; } }
 
 .split {
   display: -webkit-box;
@@ -102,6 +107,15 @@
     box-sizing: border-box;
     padding-left: 0.5rem;
     padding-right: 0.5rem; }
+  @media screen and (max-width: 1024px) {
+    .split {
+      display: block;
+      width: 100%; }
+      .split section {
+        display: block;
+        width: 100%;
+        padding-top: 1rem;
+        padding-bottom: 1rem; } }
 
 .btn {
   display: inline-block;
@@ -191,5 +205,9 @@ p, a {
   flex-direction: column;
   flex-wrap: wrap;
   text-align: center; }
+
+@media screen and (max-width: 1024px) {
+  .not-mobile {
+    display: none !important; } }
 
 /*# sourceMappingURL=style.css.map */

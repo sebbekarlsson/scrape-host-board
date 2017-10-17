@@ -52,3 +52,9 @@
     flex-wrap: wrap;
     text-align: center;
 }
+
+.not-mobile {
+    @include media-ipad-pro {
+        display: none !important;
+    }
+}
