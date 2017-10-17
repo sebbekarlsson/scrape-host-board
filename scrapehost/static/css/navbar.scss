@@ -9,6 +9,7 @@ $nav_height: 64px;
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 80;
 
     .site-content {
         @include display-flex();

@@ -29,6 +29,7 @@ def run():
             'js_all',
             flask_assets.Bundle(
                 'utils.js',
+                'navbar.js',
                 'app.js',
                 filters=['jsmin'],
                 output='js/packed.js'
