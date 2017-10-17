@@ -168,6 +168,11 @@ p, a {
   max-width: 1024px;
   margin: auto;
   position: relative; }
+  @media screen and (max-width: 1024px) {
+    .site-content {
+      box-sizing: border-box;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem; } }
 
 .material-icons {
   font-family: 'Material Icons';

@@ -17,6 +17,12 @@
     max-width: 1024px;
     margin: auto;
     position: relative;
+
+    @include media-ipad-pro {
+        box-sizing: border-box;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
 }
 
 .material-icons {
