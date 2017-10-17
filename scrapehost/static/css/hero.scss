@@ -13,7 +13,12 @@
     flex-direction: column;
 
     .site-content {
-        max-width: 1024px;
+        width: 1024px;
+
+        .form {
+            width: 50%;
+            margin: auto;
+        }
     }
 
     section:nth-child(1) {
@@ -41,6 +46,10 @@
 
         section:nth-child(2) {
             display: none;
+        }
+
+        .form {
+            width: 100% !important;
         }
     }
 }

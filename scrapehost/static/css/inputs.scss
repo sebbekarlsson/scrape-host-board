@@ -22,3 +22,27 @@
         color: white;
     }
 }
+
+.input-text {
+    background: none;
+    border: none;
+    outline: none;
+    @include font-default();
+    font-size: 100%;
+    height: 32px;
+    line-height: 32px;
+    color: white;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: white;
+}
+
+.form {
+    .btn {
+        margin-top: 0.5rem;
+    }
+
+    .input-text {
+        width: 100%;
+    }
+}
