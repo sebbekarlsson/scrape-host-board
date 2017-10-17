@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+    <div class='site-content'>
+        <nav class='navbar'>
+            <section>
+                <a href='/'>logotype</a>
+            </section>
+            <section>
+                <a href='/register'>register</a>
+                <a href='/register'>login</a>
+            </section>
+        </nav>
+    </div>
+    {% block site_content %}
+    {% endblock %}
+{% endblock %}
