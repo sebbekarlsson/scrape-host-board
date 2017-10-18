@@ -14,6 +14,12 @@ def show():
 def show_scrapers():
     return render_template('admin/scrapers.html')
 
+@bp.route('/scrapers/edit/<scraper_id>', methods=['POST', 'GET'])
+@bp.route('/scrapers/edit', methods=['POST', 'GET'], defaults={'scraper_id': None})
+@login_required
+def show_scrapers_edit(scraper_id):
+    return render_template('admin/scraper_editor.html')
+
 @bp.route('/messages')
 @login_required
 def show_messages():
