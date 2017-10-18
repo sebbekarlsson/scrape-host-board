@@ -1,0 +1,18 @@
+@import 'variables.scss';
+
+
+.table {
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+
+    th, td {
+        padding: 1rem;
+    }
+
+    tr {
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: $color_main;
+    }
+}

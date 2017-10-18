@@ -345,6 +345,17 @@ p, a {
     padding-right: 0.5rem;
     padding-top: 0.5rem; }
 
+.table {
+  border-collapse: collapse;
+  text-align: left;
+  width: 100%; }
+  .table th, .table td {
+    padding: 1rem; }
+  .table tr {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #6CCAA3; }
+
 * {
   margin: 0;
   padding: 0; }

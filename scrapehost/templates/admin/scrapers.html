@@ -2,5 +2,40 @@
 
 
 {% block admin_content %}
-scrapers
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>location</th>
+                <th>status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Image Scraper</td>
+                <td>https://amazon.com</td>
+                <td>running</td>
+                <td><a href='#' class='btn btn-primary'>Manage</a></td>
+            </tr>
+            <tr>
+                <td>Link Scraper</td>
+                <td>https://reddit.com</td>
+                <td>running</td>
+                <td><a href='#' class='btn btn-primary'>Manage</a></td>
+            </tr>
+            <tr>
+                <td>Image Scraper</td>
+                <td>https://imgur.com</td>
+                <td>stopped</td>
+                <td><a href='#' class='btn btn-primary'>Manage</a></td>
+            </tr>
+            <tr>
+                <td>Email Scraper</td>
+                <td>https://example.com</td>
+                <td>running</td>
+                <td><a href='#' class='btn btn-primary'>Manage</a></td>
+            </tr>
+        </tbody>
+    </table>
 {% endblock %}
