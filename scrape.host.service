@@ -1,0 +1,8 @@
+[Unit]
+Description=uWSGI instance to serve scrape.host
+
+[Service]
+ExecStart=/bin/bash -c 'cd /var/www/scrape.host; uwsgi --ini scrape.host/scrape.host.ini'
+
+[Install]
+WantedBy=multi-user.target
