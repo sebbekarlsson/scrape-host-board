@@ -156,6 +156,9 @@
   border-bottom-width: 1px;
   border-bottom-color: white; }
 
+.form h2 {
+  margin-bottom: 2rem;
+  font-weight: 200; }
 .form .btn {
   margin-top: 0.5rem; }
 .form .input-text {

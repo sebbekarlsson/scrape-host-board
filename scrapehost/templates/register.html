@@ -5,6 +5,7 @@
     <div class='hero'>
         <div class='site-content'>
             <form class='form' method='POST'>
+                <h2>Register</h3>
                 <label for='user-email'>
                     <p>Email</p>
                     <input type='email' class='input-text' name='user-email'/>
@@ -20,6 +21,7 @@
                 <div class='push-down'>
                     <input type='submit' class='btn btn-primary' name='register' value='Register'/>
                 </div>
+                {% include 'components/errors.html' %}
             </form>
         </div>
     </div>
