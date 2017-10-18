@@ -295,6 +295,49 @@ p, a {
     border-right-style: solid;
     border-right-width: 1px;
     border-right-color: #6CCAA3; }
+    .view-admin .view-admin-menu .view-admin-menu-item {
+      width: 100%;
+      height: 64px;
+      text-decoration: none;
+      color: #6CCAA3;
+      font-weight: 400;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-bottom-color: #6CCAA3;
+      display: -webkit-box;
+      /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+      display: -ms-flexbox;
+      /* TWEENER - IE 10 */
+      display: -webkit-flex;
+      /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+      display: flex;
+      /* NEW, Spec - Firefox, Chrome, Opera */
+      flex-direction: row;
+      transition: .2s; }
+      .view-admin .view-admin-menu .view-admin-menu-item section {
+        line-height: 64px; }
+      .view-admin .view-admin-menu .view-admin-menu-item section:nth-child(1) {
+        width: 20%;
+        display: -webkit-box;
+        /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+        display: -ms-flexbox;
+        /* TWEENER - IE 10 */
+        display: -webkit-flex;
+        /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+        display: flex;
+        /* NEW, Spec - Firefox, Chrome, Opera */
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle; }
+        .view-admin .view-admin-menu .view-admin-menu-item section:nth-child(1) .material-icons {
+          font-size: 2em;
+          vertical-align: middle; }
+      .view-admin .view-admin-menu .view-admin-menu-item section:nth-child(2) {
+        flex: 1; }
+      .view-admin .view-admin-menu .view-admin-menu-item:hover {
+        background-color: #6CCAA3;
+        color: white;
+        transition: .2s; }
   .view-admin .view-admin-content {
     flex: 1;
     box-sizing: border-box;

@@ -4,6 +4,22 @@
 {% block site_content %}
     <div class='view-admin'>
         <div class='view-admin-menu'>
+            <a href='/admin/scrapers' class='view-admin-menu-item'>
+                <section>
+                    <i class='material-icons'>http</i>
+                </section>
+                <section>
+                    scrapers
+                </section>
+            </a>
+            <a href='/admin/settings' class='view-admin-menu-item'>
+                <section>
+                    <i class='material-icons'>settings</i>
+                </section>
+                <section>
+                    settings
+                </section>
+            </a>
         </div>
         <div class='view-admin-content'>
             {% block admin_content %}
