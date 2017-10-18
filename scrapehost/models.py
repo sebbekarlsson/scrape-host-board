@@ -36,3 +36,23 @@ class User(DBObject):
         DBObject.__init__(self, *args, **kwargs)
         self.email = email
         self.password = password
+
+class Scraper(DBObject):
+    def __init__(
+            self,
+            name=None,
+            location=None,
+            user_id=None,
+            status=1,
+            query=None,
+            data=None,
+            *args,
+            **kwargs
+            ):
+        DBObject.__init__(self, *args, **kwargs)
+        self.name = name
+        self.location = location
+        self.user_id = user_id
+        self.status = status
+        self.query = query
+        self.data = data
