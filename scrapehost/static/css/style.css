@@ -50,6 +50,9 @@
       justify-content: flex-begin; }
     .navbar .site-content section:nth-child(2) {
       justify-content: flex-end; }
+  .navbar.navbar-contrast {
+    background-color: #6CCAA3;
+    color: white; }
 
 .hero {
   width: 100%;
@@ -273,6 +276,31 @@ p, a {
       font-size: 5em;
       color: #2B5B98;
       margin-bottom: 1rem; }
+
+.view-admin {
+  margin-top: 64px;
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */
+  flex-direction: row;
+  min-height: calc(100vh - 64px);
+  font-family: 'Source Sans Pro', sans-serif; }
+  .view-admin .view-admin-menu {
+    width: 19%;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: #6CCAA3; }
+  .view-admin .view-admin-content {
+    flex: 1;
+    box-sizing: border-box;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.5rem; }
 
 * {
   margin: 0;

@@ -1,0 +1,27 @@
+@import 'mixins.scss';
+@import 'variables.scss';
+
+
+.view-admin {
+    margin-top: 64px;
+    @include display-flex();
+    flex-direction: row;
+    min-height: calc(100vh - 64px);
+    @include font-default();
+
+
+    .view-admin-menu {
+        width: 19%;
+        border-right-style: solid;
+        border-right-width: 1px;
+        border-right-color: $color_main;
+    }
+
+    .view-admin-content {
+        flex: 1;
+        box-sizing: border-box;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-top: 0.5rem;
+    }
+}

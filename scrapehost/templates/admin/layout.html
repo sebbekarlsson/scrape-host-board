@@ -1,0 +1,13 @@
+{% extends 'site_layout.html' %}
+
+
+{% block site_content %}
+    <div class='view-admin'>
+        <div class='view-admin-menu'>
+        </div>
+        <div class='view-admin-content'>
+            {% block admin_content %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

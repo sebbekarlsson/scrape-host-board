@@ -58,4 +58,9 @@ $nav_height: 64px;
             justify-content: flex-end;
         }
     }
+
+    &.navbar-contrast {
+        background-color: $color_main;
+        color: white;
+    }
 }

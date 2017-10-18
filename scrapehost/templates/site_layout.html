@@ -2,15 +2,22 @@
 
 
 {% block body %}
-    <nav class='navbar' id='navbar'>
+    <nav class='navbar {% if is_loggedin() %} navbar-contrast {% endif %}' id='navbar'>
         <div class='site-content'>
             <section>
                 <a href='/'>scrape.host</a>
             </section>
-            <section>
-                <a href='/register'>register</a>
-                <a href='/login'><span class='btn btn-primary'>login</span></a>
-            </section>
+            {% if not is_loggedin() %}
+                <section>
+                    <a href='/register'>register</a>
+                    <a href='/login'><span class='btn btn-primary'>login</span></a>
+                </section>
+            {% else %}
+                <section>
+                    <a href='/admin'>admin</a>
+                    <a href='/logout'>logout</a>
+                </section>
+            {% endif %}
         </div>
     </nav>
     {% block site_content %}
