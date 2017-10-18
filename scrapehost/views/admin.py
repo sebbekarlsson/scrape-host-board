@@ -13,3 +13,13 @@ def show():
 @login_required
 def show_scrapers():
     return render_template('admin/scrapers.html')
+
+@bp.route('/messages')
+@login_required
+def show_messages():
+    return render_template('admin/messages.html')
+
+@bp.route('/settings')
+@login_required
+def show_settings():
+    return render_template('admin/settings.html')
