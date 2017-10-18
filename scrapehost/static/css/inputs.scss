@@ -15,7 +15,16 @@
     padding-left: 1rem;
     padding-right: 1rem;
     @include font-default();
+    font-size: 100%;
     border-radius: 32px;
+
+    .material-icons {
+        vertical-align: middle;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
 
     &.btn-primary {
         background-color: $color_main;

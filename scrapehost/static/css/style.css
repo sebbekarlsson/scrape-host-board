@@ -141,7 +141,12 @@
   padding-left: 1rem;
   padding-right: 1rem;
   font-family: 'Source Sans Pro', sans-serif;
+  font-size: 100%;
   border-radius: 32px; }
+  .btn .material-icons {
+    vertical-align: middle; }
+  .btn:hover {
+    cursor: pointer; }
   .btn.btn-primary {
     background-color: #6CCAA3;
     color: white; }
