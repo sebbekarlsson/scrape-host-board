@@ -19,6 +19,11 @@ def show_scrapers():
 def show_messages():
     return render_template('admin/messages.html')
 
+@bp.route('/api')
+@login_required
+def show_api():
+    return render_template('admin/api.html')
+
 @bp.route('/settings')
 @login_required
 def show_settings():
