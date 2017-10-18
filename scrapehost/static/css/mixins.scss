@@ -15,6 +15,10 @@
     background: linear-gradient($pos, #185a9d, #43cea2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+@mixin shadow-2 {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
 @mixin media-ipad-pro {
     @media screen and (max-width: 1024px) {
         @content;

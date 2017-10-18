@@ -1,0 +1,44 @@
+@import 'mixins.scss';
+@import 'variables.scss';
+
+
+.card {
+    width: 100%;
+    height: 300px;
+    @include shadow-2();
+    @include font-default();
+    position: relative;
+
+    .card-pin {
+        width: 32px;
+        height: 32px;
+        display: inline-block;
+        color: white;
+        @include gradient-endless-river();
+        border-radius: 64px;
+        position: absolute;
+        line-height: 32px;
+        text-align: center;
+        top: -16px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .card-body {
+        width: 100%;
+        height: 100%;
+        @include display-flex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        .material-icons {
+            font-size: 5em;
+            color: $color_secondary;
+            margin-bottom: 1rem;
+        }
+    }
+}

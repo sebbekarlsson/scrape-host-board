@@ -223,6 +223,52 @@ p, a {
         .footer .site-content .split section:nth-child(2) {
           text-align: left; } }
 
+.card {
+  width: 100%;
+  height: 300px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  font-family: 'Source Sans Pro', sans-serif;
+  position: relative; }
+  .card .card-pin {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    color: white;
+    background: #43cea2;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #185a9d, #43cea2);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #185a9d, #43cea2);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 64px;
+    position: absolute;
+    line-height: 32px;
+    text-align: center;
+    top: -16px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto; }
+  .card .card-body {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap; }
+    .card .card-body .material-icons {
+      font-size: 5em;
+      color: #2B5B98;
+      margin-bottom: 1rem; }
+
 * {
   margin: 0;
   padding: 0; }
