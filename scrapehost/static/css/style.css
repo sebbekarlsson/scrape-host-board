@@ -163,6 +163,9 @@
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-bottom-color: white; }
+  .input-text.input-text-contrast {
+    border-bottom-color: #6CCAA3;
+    color: #6CCAA3; }
 
 .form h2 {
   margin-bottom: 2rem;
@@ -171,6 +174,8 @@
   margin-top: 0.5rem; }
 .form .input-text {
   width: 100%; }
+.form label p {
+  margin-bottom: 0.5rem; }
 
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5rem; }

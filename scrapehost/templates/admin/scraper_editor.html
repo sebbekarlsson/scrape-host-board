@@ -2,5 +2,26 @@
 
 
 {% block admin_content %}
-edit scraper
+    <form class='form' method='POST'>
+        <label for='scraper-name'>
+            <p>Name</p>
+            <input
+            {% if scraper %}
+                value='{{ scraper.name }}'
+            {% endif %}
+            type='text' class='input-text input-text-contrast' name='scraper-name'/>
+        </label>
+        <label for='scraper-location'>
+            <p>Location / Website</p>
+            <input
+            {% if scraper %}
+                value='{{ scraper.location }}'
+            {% endif %}
+            type='text' class='input-text input-text-contrast' name='scraper-location'/>
+        </label>
+        <div class='push-down'>
+            <input type='submit' class='btn btn-primary' name='save' value='Save'/>
+        </div>
+        {% include 'components/errors.html' %}
+    </form>
 {% endblock %}

@@ -44,6 +44,11 @@
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-bottom-color: white;
+
+    &.input-text-contrast {
+        border-bottom-color: $color_main;
+        color: $color_main;
+    }
 }
 
 .form {
@@ -58,5 +63,11 @@
 
     .input-text {
         width: 100%;
+    }
+
+    label {
+        p {
+            margin-bottom: 0.5rem;
+        }
     }
 }

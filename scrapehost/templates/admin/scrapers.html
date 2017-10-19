@@ -15,30 +15,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Image Scraper</td>
-                <td>https://amazon.com</td>
-                <td>running</td>
-                <td><a href='#' class='btn btn-primary'>Manage</a></td>
-            </tr>
-            <tr>
-                <td>Link Scraper</td>
-                <td>https://reddit.com</td>
-                <td>running</td>
-                <td><a href='#' class='btn btn-primary'>Manage</a></td>
-            </tr>
-            <tr>
-                <td>Image Scraper</td>
-                <td>https://imgur.com</td>
-                <td>stopped</td>
-                <td><a href='#' class='btn btn-primary'>Manage</a></td>
-            </tr>
-            <tr>
-                <td>Email Scraper</td>
-                <td>https://example.com</td>
-                <td>running</td>
-                <td><a href='#' class='btn btn-primary'>Manage</a></td>
-            </tr>
+            {% for scraper in scrapers %}
+                <tr>
+                    <td>{{ scraper.name }}</td>
+                    <td>{{ scraper.location }}</td>
+                    <td>{{ scraper.status }}</td>
+                    <td><a href='/admin/scrapers/edit/{{ scraper._id }}' class='btn btn-primary'>Manage</a></td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 {% endblock %}
