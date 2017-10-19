@@ -46,6 +46,7 @@ def show_scrapers_edit(scraper_id):
             name = request.form.get('scraper-name')
             location = request.form.get('scraper-location')
             status = 0
+            domain_restrict = False
 
             if 'http' not in location:
                 errors.append('Location needs to be a valid http/https Address')
@@ -53,13 +54,17 @@ def show_scrapers_edit(scraper_id):
             if request.form.get('scraper-status'):
                 status = 1
 
+            if request.form.get('scraper-domain_restrict'):
+                domain_restrict = True
+
             if len(errors) == 0:
                 if not scraper_id:
                     scraper = Scraper(
                         name=name,
                         location=location,
                         user_id=current_user['_id'],
-                        status=status
+                        status=status,
+                        domain_restrict=domain_restrict
                     )
 
                     res = db.collections.insert_one(scraper.export())
@@ -74,7 +79,8 @@ def show_scrapers_edit(scraper_id):
                         '$set': {
                             'name': name,
                             'location': location,
-                            'status': status
+                            'status': status,
+                            'domain_restrict': domain_restrict
                         }
                     }
                     )

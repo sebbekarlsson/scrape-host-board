@@ -1,5 +1,5 @@
 from requests import Session
-from requests.exceptions import InvalidSchema, MissingSchema
+from requests.exceptions import InvalidSchema, MissingSchema, ConnectionError
 from bs4 import BeautifulSoup
 from scrapehost.mongo import db
 import urlparse
@@ -14,13 +14,17 @@ class ScraperInstance(object):
         self.found_urls = scraper['found_urls']
         self.url_index = int(scraper['url_index'])
 
+        if len(self.found_urls) == 0:
+            self.found_urls.append(scraper['location'])
+
     def visit_url(self, url):
         try:
             res = self.session.get(url)
-        except (InvalidSchema, MissingSchema): #TODO: instead of catching MissingSchema, urljoin
+        except (InvalidSchema, MissingSchema, ConnectionError):
             return None
-
-        self.visited_urls.append(url)
+        
+        if url not in self.visited_urls:
+            self.visited_urls.append(url)
         
         if res.text:
             soup = BeautifulSoup(res.text, 'html.parser')
@@ -33,8 +37,9 @@ class ScraperInstance(object):
                 
                 if 'http' not in href:
                     href = urlparse.urljoin(url, href)
-
-                self.found_urls.append(href)
+                
+                if href not in self.found_urls:
+                    self.found_urls.append(href)
 
         db.collections.update_one({
             'structure': '#Scraper',
@@ -42,7 +47,9 @@ class ScraperInstance(object):
         },
         {
             '$set': {
-                'location': url    
+                'url_index': self.url_index,
+                'visited_urls': self.visited_urls,
+                'found_urls': self.found_urls
             }
         }
         )
@@ -54,3 +61,5 @@ class ScraperInstance(object):
 
         if self.url_index < len(self.found_urls) - 1:
             self.url_index += 1
+        else:
+            self.url_index = 0

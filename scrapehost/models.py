@@ -49,6 +49,7 @@ class Scraper(DBObject):
             status=1,
             query=None,
             data=None,
+            domain_restrict=False,
             *args,
             **kwargs
             ):
@@ -62,3 +63,4 @@ class Scraper(DBObject):
         self.status = status
         self.query = query
         self.data = data
+        self.domain_restrict = domain_restrict
