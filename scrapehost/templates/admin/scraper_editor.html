@@ -19,6 +19,21 @@
             {% endif %}
             type='text' class='input-text input-text-contrast' name='scraper-location'/>
         </label>
+        <label>
+            <p>On/Off</p>
+            <input
+
+            {% if scraper %} 
+                {% if scraper.status == 1 %}
+                    checked
+                {% endif %}
+            {% else %}
+                checked
+            {% endif %}
+
+            type="checkbox" name="scraper-status" class="input-toggle" id='scraper-status'>
+            <label for="scraper-status">on</label>
+        </label>
         <div class='push-down'>
             <input type='submit' class='btn btn-primary' name='save' value='Save'/>
         </div>

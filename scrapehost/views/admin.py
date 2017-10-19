@@ -35,12 +35,17 @@ def show_scrapers_edit(scraper_id):
         if request.form.get('save'):
             name = request.form.get('scraper-name')
             location = request.form.get('scraper-location')
+            status = 0
+            
+            if request.form.get('scraper-status'):
+                status = 1
 
             if not scraper_id:
                 scraper = Scraper(
                     name=name,
                     location=location,
-                    user_id=current_user['_id']
+                    user_id=current_user['_id'],
+                    status=status
                 )
 
                 res = db.collections.insert_one(scraper.export())
@@ -52,7 +57,8 @@ def show_scrapers_edit(scraper_id):
                 {
                     '$set': {
                         'name': name,
-                        'location': location
+                        'location': location,
+                        'status': status
                     }
                 }
                 )
