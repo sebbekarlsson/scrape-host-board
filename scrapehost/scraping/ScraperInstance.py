@@ -10,9 +10,9 @@ class ScraperInstance(object):
     def __init__(self, scraper):
         self.session = Session()
         self.scraper = scraper
-        self.visited_urls = []
-        self.found_urls = [scraper['location']]
-        self.url_index = 0
+        self.visited_urls = scraper['visited_urls']
+        self.found_urls = scraper['found_urls']
+        self.url_index = int(scraper['url_index'])
 
     def visit_url(self, url):
         try:

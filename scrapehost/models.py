@@ -42,7 +42,7 @@ class Scraper(DBObject):
             self,
             name=None,
             location=None, # user input
-            current_url=None,
+            url_index=0,
             visited_urls=[],
             found_urls=[],
             user_id=None,
@@ -55,7 +55,7 @@ class Scraper(DBObject):
         DBObject.__init__(self, *args, **kwargs)
         self.name = name
         self.location = location
-        self.current_url = current_url
+        self.url_index = url_index
         self.visited_urls = visited_urls
         self.found_urls = found_urls
         self.user_id = user_id
