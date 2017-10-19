@@ -3,43 +3,18 @@
 
 {% block site_content %}
     <div class='view-admin'>
-        <div class='view-admin-menu'>
-            <a href='/admin/scrapers' class='view-admin-menu-item'>
-                <section>
-                    <i class='material-icons'>http</i>
-                </section>
-                <section>
-                    scrapers
-                </section>
-            </a>
-            <a href='/admin/messages' class='view-admin-menu-item'>
-                <section>
-                    <i class='material-icons'>message</i>
-                </section>
-                <section>
-                    messages
-                </section>
-            </a>
-            <a href='/admin/api' class='view-admin-menu-item'>
-                <section>
-                    <i class='material-icons'>swap_calls</i>
-                </section>
-                <section>
-                    API
-                </section>
-            </a>
-            <a href='/admin/settings' class='view-admin-menu-item'>
-                <section>
-                    <i class='material-icons'>settings</i>
-                </section>
-                <section>
-                    settings
-                </section>
-            </a>
+        <div class='view-admin-menu not-mobile'>
+            {% include 'components/admin-menu.html' %} 
         </div>
         <div class='view-admin-content'>
             {% block admin_content %}
             {% endblock %}
+        </div>
+        <div class='view-admin-mobile-menu only-mobile' data-active='0' id='admin-mobile-menu'>
+            {% include 'components/admin-menu.html' %} 
+        </div>
+        <div class='view-admin-mobile-menu-btn only-mobile' id='admin-mobile-menu-btn'>
+            <i class='material-icons'>menu</i>
         </div>
     </div>
 {% endblock %}

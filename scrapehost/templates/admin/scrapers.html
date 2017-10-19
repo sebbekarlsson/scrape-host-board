@@ -11,7 +11,7 @@
                 <th>name</th>
                 <th>location</th>
                 <th>status</th>
-                <th></th>
+                <th class='not-mobile'></th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +20,7 @@
                     <td>{{ scraper.name }}</td>
                     <td>{{ scraper.location }}</td>
                     <td>{{ 'ON' if scraper.status == 1 else 'OFF' }}</td>
-                    <td><a href='/admin/scrapers/edit/{{ scraper._id }}' class='btn btn-primary'>Manage</a></td>
+                    <td class='not-mobile'><a href='/admin/scrapers/edit/{{ scraper._id }}' class='btn btn-primary'>Manage</a></td>
                 </tr>
             {% endfor %}
         </tbody>

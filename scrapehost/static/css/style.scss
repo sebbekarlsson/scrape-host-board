@@ -72,6 +72,12 @@
     }
 }
 
+.only-mobile {
+    @include media-desktop {
+        display: none !important;
+    }
+}
+
 .push-down {
     margin-top: 1rem;
 }
