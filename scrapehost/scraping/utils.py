@@ -1,15 +1,17 @@
 from scrapehost.mongo import db
 import subprocess
 from subprocess import CalledProcessError
+from scrapehost.scraping.ScraperInstance import ScraperInstance
 
 
 def get_active_scrapers():
-    return list(
+    return [
+        ScraperInstance(scraper) for scraper in
         db.collections.find({
             'structure': '#Scraper',
             'status': 1
         })
-    )
+    ]
 
 def is_service_running(service_name):
     try:
@@ -26,6 +28,3 @@ def is_service_running(service_name):
 
 def is_scraping_service_running():
     return is_service_running('scrape.host.scraper.service')
-
-
-print(is_scraping_service_running())

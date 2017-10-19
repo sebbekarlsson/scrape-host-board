@@ -10,7 +10,8 @@ setup(
         'flask_assets',
         'jsmin',
         'pymongo',
-        'bcrypt'
+        'bcrypt',
+        'requests'
     ],
     packages=[
         'scrapehost'
