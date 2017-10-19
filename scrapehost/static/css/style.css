@@ -150,6 +150,9 @@
   .btn.btn-primary {
     background-color: #6CCAA3;
     color: white; }
+  .btn.btn-warning {
+    background-color: #BE5855;
+    color: white; }
 
 .input-text {
   background: none;
@@ -473,5 +476,8 @@ p, a {
 
 .push-down {
   margin-top: 1rem; }
+
+.push-right {
+  margin-left: 1rem; }
 
 /*# sourceMappingURL=style.css.map */

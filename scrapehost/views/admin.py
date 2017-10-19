@@ -32,6 +32,15 @@ def show_scrapers_edit(scraper_id):
     scraper = None
 
     if request.method == 'POST':
+        if request.form.get('delete'):
+            if scraper_id:
+                db.collections.remove({
+                    'structure': '#Scraper',
+                    '_id': ObjectId(scraper_id)
+                })
+
+                return redirect('/admin/scrapers')
+
         if request.form.get('save'):
             name = request.form.get('scraper-name')
             location = request.form.get('scraper-location')
@@ -50,6 +59,8 @@ def show_scrapers_edit(scraper_id):
 
                 res = db.collections.insert_one(scraper.export())
                 scraper_id = str(res.inserted_id)
+                
+                return redirect('/admin/scrapers/edit/{}'.format(scraper_id))
             else:
                 db.collections.update_one({
                     '_id': ObjectId(scraper_id)

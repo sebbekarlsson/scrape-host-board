@@ -30,6 +30,11 @@
         background-color: $color_main;
         color: white;
     }
+
+    &.btn-warning {
+        background-color: $color_warning;
+        color: white;
+    }
 }
 
 .input-text {
