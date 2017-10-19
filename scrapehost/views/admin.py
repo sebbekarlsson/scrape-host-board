@@ -28,6 +28,7 @@ def show_scrapers():
 @bp.route('/scrapers/edit', methods=['POST', 'GET'], defaults={'scraper_id': None})
 @login_required
 def show_scrapers_edit(scraper_id):
+    errors = []
     current_user = get_current_user()
     scraper = None
 
@@ -45,34 +46,38 @@ def show_scrapers_edit(scraper_id):
             name = request.form.get('scraper-name')
             location = request.form.get('scraper-location')
             status = 0
+
+            if 'http' not in location:
+                errors.append('Location needs to be a valid http/https Address')
             
             if request.form.get('scraper-status'):
                 status = 1
 
-            if not scraper_id:
-                scraper = Scraper(
-                    name=name,
-                    location=location,
-                    user_id=current_user['_id'],
-                    status=status
-                )
+            if len(errors) == 0:
+                if not scraper_id:
+                    scraper = Scraper(
+                        name=name,
+                        location=location,
+                        user_id=current_user['_id'],
+                        status=status
+                    )
 
-                res = db.collections.insert_one(scraper.export())
-                scraper_id = str(res.inserted_id)
-                
-                return redirect('/admin/scrapers/edit/{}'.format(scraper_id))
-            else:
-                db.collections.update_one({
-                    '_id': ObjectId(scraper_id)
-                },
-                {
-                    '$set': {
-                        'name': name,
-                        'location': location,
-                        'status': status
+                    res = db.collections.insert_one(scraper.export())
+                    scraper_id = str(res.inserted_id)
+                    
+                    return redirect('/admin/scrapers/edit/{}'.format(scraper_id))
+                else:
+                    db.collections.update_one({
+                        '_id': ObjectId(scraper_id)
+                    },
+                    {
+                        '$set': {
+                            'name': name,
+                            'location': location,
+                            'status': status
+                        }
                     }
-                }
-                )
+                    )
 
     if scraper_id:
         scraper = db.collections.find_one({
@@ -80,7 +85,7 @@ def show_scrapers_edit(scraper_id):
             '_id': ObjectId(scraper_id)
         })
 
-    return render_template('admin/scraper_editor.html', scraper=scraper)
+    return render_template('admin/scraper_editor.html', scraper=scraper, errors=errors)
 
 @bp.route('/messages')
 @login_required
