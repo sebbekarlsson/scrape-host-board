@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect
 from scrapehost.mongo import db
 from scrapehost.models import User
+from scrapehost.password import get_hashed_password 
 
 
 bp = Blueprint(__name__, __name__, template_folder='templates')
@@ -35,6 +36,8 @@ def show():
                 errors.append('User with email already exists')
 
             if len(errors) == 0:
+                password = get_hashed_password(password) #encrypt the password
+
                 user = User(
                     email=email,
                     password=password

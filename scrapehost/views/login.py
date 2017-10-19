@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, session, redirect
 from scrapehost.mongo import db
+from scrapehost.password import check_password
 
 
 bp = Blueprint(__name__, __name__, template_folder='templates')
@@ -22,7 +23,7 @@ def show():
                 errors.append('No user with that email')
             
             if len(errors) == 0:
-                if existing['password'] == password:
+                if check_password(existing['password'], password):
                     session['user_id'] = str(existing['_id'])
 
                     return redirect('/admin/scrapers')
