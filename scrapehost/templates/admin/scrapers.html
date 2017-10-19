@@ -19,7 +19,7 @@
                 <tr>
                     <td>{{ scraper.name }}</td>
                     <td>{{ scraper.location }}</td>
-                    <td>{{ scraper.status }}</td>
+                    <td>{{ 'ON' if scraper.status == 1 else 'OFF' }}</td>
                     <td><a href='/admin/scrapers/edit/{{ scraper._id }}' class='btn btn-primary'>Manage</a></td>
                 </tr>
             {% endfor %}
