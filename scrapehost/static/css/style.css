@@ -144,7 +144,8 @@
   font-size: 100%;
   border-radius: 32px; }
   .btn .material-icons {
-    vertical-align: middle; }
+    vertical-align: middle;
+    margin-right: 0.5rem; }
   .btn:hover {
     cursor: pointer; }
   .btn.btn-primary {
