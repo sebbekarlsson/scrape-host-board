@@ -11,7 +11,8 @@ setup(
         'jsmin',
         'pymongo',
         'bcrypt',
-        'requests'
+        'requests',
+        'bs4'
     ],
     packages=[
         'scrapehost'
