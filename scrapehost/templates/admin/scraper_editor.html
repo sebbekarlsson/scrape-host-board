@@ -22,10 +22,10 @@
         <label for='scraper-query'>
             <label for='scraper-query-presets'>
                 <p>Query presets</p>
-                <select>
-                    <option value='0'>Image query</option>
-                    <option value='1'>Email query</option>
-                    <option value='2'>Link query</option>
+                <select name='scraper-query-preset'>
+                    {% for preset in presets %}
+                        <option value='{{ preset.name }}' data-code='{{ preset.code }}'>{{ preset.name }}</option>
+                    {% endfor %}
                 </select>
             </label>
             <div class='push-down'>

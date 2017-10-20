@@ -3,6 +3,7 @@ from flask import session, redirect
 from scrapehost.mongo import db
 from bson.objectid import ObjectId
 from bs4 import BeautifulSoup
+import glob
 
 
 def is_loggedin():
@@ -27,3 +28,14 @@ def login_required(f):
             return redirect('/login')
         return f(*args, **kwargs)
     return decorated_function
+
+def get_scraper_query_presets():
+    presets = []
+    presets_files = glob.glob('scrapehost/scraping/presets/*.py')
+
+    for preset in presets_files:
+        with open(preset) as pfile:
+            presets.append({'name': preset, 'code': pfile.read()})
+        pfile.close()
+
+    return presets

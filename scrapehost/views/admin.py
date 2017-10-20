@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, request, Response
-from scrapehost.utils import login_required, get_current_user
+from scrapehost.utils import login_required, get_current_user, get_scraper_query_presets
 from scrapehost.mongo import db
 from scrapehost.models import Scraper
 from bson.objectid import ObjectId
@@ -108,7 +108,10 @@ def show_scrapers_edit(scraper_id):
             '_id': ObjectId(scraper_id)
         })
 
-    return render_template('admin/scraper_editor.html', scraper=scraper, errors=errors)
+    
+    presets = get_scraper_query_presets()
+
+    return render_template('admin/scraper_editor.html', scraper=scraper, presets=presets, errors=errors)
 
 @bp.route('/scrapers/download/<scraper_id>', methods=['POST', 'get'])
 def show_download_scraper_data(scraper_id):
