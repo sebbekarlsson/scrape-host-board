@@ -45,6 +45,7 @@ def show_scrapers_edit(scraper_id):
         if request.form.get('save'):
             name = request.form.get('scraper-name')
             location = request.form.get('scraper-location')
+            query = request.form.get('scraper-query')
             status = 0
             domain_restrict = False
 
@@ -64,7 +65,8 @@ def show_scrapers_edit(scraper_id):
                         location=location,
                         user_id=current_user['_id'],
                         status=status,
-                        domain_restrict=domain_restrict
+                        domain_restrict=domain_restrict,
+                        query=query
                     )
 
                     res = db.collections.insert_one(scraper.export())
@@ -80,7 +82,8 @@ def show_scrapers_edit(scraper_id):
                             'name': name,
                             'location': location,
                             'status': status,
-                            'domain_restrict': domain_restrict
+                            'domain_restrict': domain_restrict,
+                            'query': query
                         }
                     }
                     )

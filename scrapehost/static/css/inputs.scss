@@ -57,6 +57,17 @@
     }
 }
 
+.input-textarea {
+    background: none;
+    outline: none;
+    border: none;
+    min-height: 256px;
+    width: 100%;
+    border-bottom-style: solid;
+    border-bottom-color: $color_main;
+    border-bottom-width: 1px;
+}
+
 .form {
     h2 {
         margin-bottom: 2rem;

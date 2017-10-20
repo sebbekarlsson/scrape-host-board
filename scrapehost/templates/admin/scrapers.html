@@ -18,7 +18,7 @@
             {% for scraper in scrapers %}
                 <tr>
                     <td>{{ scraper.name }}</td>
-                    <td>{{ scraper.found_urls[scraper.url_index] }}</td>
+                    <td>{{ scraper.location }}</td>
                     <td>{{ 'ON' if scraper.status == 1 else 'OFF' }}</td>
                     <td class='not-mobile'><a href='/admin/scrapers/edit/{{ scraper._id }}' class='btn btn-primary'>Manage</a></td>
                 </tr>

@@ -19,6 +19,10 @@
             {% endif %}
             type='text' class='input-text input-text-contrast' name='scraper-location' placeholder='http://example.com/'/>
         </label>
+        <label for='scraper-query'>
+            <p>Query</p>
+            <textarea class='input-textarea' name='scraper-query' id='scraper-query'>{% if scraper %}{{ scraper.query }}{% endif %}</textarea>
+        </label>
         <label>
             <p class='push-down'>Restrict to one domain</p>
             <input
@@ -56,4 +60,22 @@
         </div>
         {% include 'components/errors.html' %}
     </form>
+    <div class='site-section'>
+        <div class='text-content'>
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>URL Index</th>
+                        <th>URL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ scraper.url_index }}</td>
+                        <td>{{ scraper.found_urls[scraper.url_index] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
