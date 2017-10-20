@@ -1,0 +1,16 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+
+.scraper-plan-card {
+    color: black;
+    @include shadow-2();
+    transition: .2s;
+
+    &[data-selected='1'], &:hover {
+        background-color: $color_main;
+        color: white;
+        transition: .2s;
+        cursor: pointer;
+    }
+}

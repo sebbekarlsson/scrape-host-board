@@ -477,6 +477,16 @@ p, a {
     border-bottom-width: 1px;
     border-bottom-color: #6CCAA3; }
 
+.scraper-plan-card {
+  color: black;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: .2s; }
+  .scraper-plan-card[data-selected='1'], .scraper-plan-card:hover {
+    background-color: #6CCAA3;
+    color: white;
+    transition: .2s;
+    cursor: pointer; }
+
 * {
   margin: 0;
   padding: 0; }
