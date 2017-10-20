@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from requests import Session
 from requests.exceptions import InvalidSchema, MissingSchema, ConnectionError
 from bs4 import BeautifulSoup
@@ -31,37 +32,44 @@ class ScraperInstance(object):
 
     def visit_url(self, url, collect_data):
         if collect_data:
-            print('{} is visiting: {}'.format(self.name, url))
+            all_ok = True
+
+            try:
+                print('{} is visiting: {}'.format(self.name, url))
+            except:
+                print('...')
 
             try:
                 res = self.session.get(url)
             except (InvalidSchema, MissingSchema, ConnectionError):
-                return None
+                self.found_urls.pop(self.url_index)
+                all_ok = False
 
-            if res.text:
-                soup = BeautifulSoup(res.text, 'html.parser')
+            if all_ok:
+                if res.text:
+                    soup = BeautifulSoup(res.text, 'html.parser')
 
-                for a_tag in soup.find_all('a'):
-                    href = a_tag.get('href')
+                    for a_tag in soup.find_all('a'):
+                        href = a_tag.get('href')
 
-                    if not href:
-                        continue
+                        if not href:
+                            continue
+                        
+                        if 'http' not in href:
+                            href = urlparse.urljoin(url, href)
+                        
+                        if href not in self.found_urls:
+                            self.found_urls.append(href)
                     
-                    if 'http' not in href:
-                        href = urlparse.urljoin(url, href)
-                    
-                    if href not in self.found_urls:
-                        self.found_urls.append(href)
-                
-                # perform user query
-                document = soup
-                if self.query:
-                    if self.is_query_ok(self.query):
-                        try:
-                            print('Executing user query...')
-                            exec(self.query)
-                        except:
-                            return None
+                    # perform user query
+                    document = soup
+                    if self.query:
+                        if self.is_query_ok(self.query):
+                            try:
+                                print('Executing user query...')
+                                exec(self.query)
+                            except:
+                                return None
 
         if self.url_index < len(self.found_urls) - 1:
             self.url_index += 1
