@@ -40,3 +40,19 @@ def get_scraper_query_presets():
         pfile.close()
 
     return presets
+
+def get_scraper_plans():
+    return [
+        {
+            "name": "basic",
+            "price": 40 
+        },
+        {
+            "name": "standard",
+            "price": 50 
+        },
+        {
+            "name": "Professional",
+            "price": 90 
+        }
+    ]

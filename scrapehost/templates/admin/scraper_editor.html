@@ -50,30 +50,27 @@
             <label for="scraper-domain_restrict"></label>
         </label>
         <div class='split push-down' id='scraper-plan-selector'>
-            <section>
-                <div class='card scraper-plan-card'>
-                    <div class='card-body'>
-                        <h4>Basic</h4>
-                        <p>40$</p>
+            {% for plan in plans %}
+                <section>
+                    <div class='card scraper-plan-card'
+                    data-id='{{ loop.index - 1 }}'
+                   {% if scraper %} {% if scraper.plan == loop.index - 1 %} data-selected='1' {% endif %} {% else %}
+                   {% if loop.index == 2 %} data-selected='1' {% endif %} {% endif %}
+                   >
+                        <div class='card-body'>
+                            <h4>{{ plan.name }}</h4>
+                            <p>{{ plan.price }}$</p>
+                        </div>
                     </div>
-                </div>
-            </section>
-            <section>
-                <div class='card scraper-plan-card' data-selected='1'>
-                    <div class='card-body'>
-                        <h4>Standard</h4>
-                        <p>50$</p>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <div class='card scraper-plan-card'>
-                    <div class='card-body'>
-                        <h4>Professional</h4>
-                        <p>90$</p>
-                    </div>
-                </div>
-            </section>
+                </section>
+            {% endfor %}
+            <input
+            {% if scraper %}
+                value='{{ scraper.plan }}'
+            {% else %}
+                value='1'
+            {% endif %}
+            type='hidden' name='scraper-plan'>
         </div>
         <label>
             <p class='push-down'>Scraper status (On / Off)</p>

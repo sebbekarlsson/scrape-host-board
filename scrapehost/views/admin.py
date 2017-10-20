@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, request, Response
-from scrapehost.utils import login_required, get_current_user, get_scraper_query_presets
+from scrapehost.utils import login_required, get_current_user, get_scraper_query_presets, get_scraper_plans
 from scrapehost.mongo import db
 from scrapehost.models import Scraper
 from bson.objectid import ObjectId
@@ -60,6 +60,7 @@ def show_scrapers_edit(scraper_id):
             name = request.form.get('scraper-name')
             location = request.form.get('scraper-location')
             query = request.form.get('scraper-query')
+            plan = request.form.get('scraper-plan')
             status = 0
             domain_restrict = False
 
@@ -80,7 +81,8 @@ def show_scrapers_edit(scraper_id):
                         user_id=current_user['_id'],
                         status=status,
                         domain_restrict=domain_restrict,
-                        query=query
+                        query=query,
+                        plan=int(plan)
                     )
 
                     res = db.collections.insert_one(scraper.export())
@@ -97,7 +99,8 @@ def show_scrapers_edit(scraper_id):
                             'location': location,
                             'status': status,
                             'domain_restrict': domain_restrict,
-                            'query': query
+                            'query': query,
+                            'plan': int(plan)
                         }
                     }
                     )
@@ -110,8 +113,9 @@ def show_scrapers_edit(scraper_id):
 
     
     presets = get_scraper_query_presets()
+    plans = get_scraper_plans()
 
-    return render_template('admin/scraper_editor.html', scraper=scraper, presets=presets, errors=errors)
+    return render_template('admin/scraper_editor.html', scraper=scraper, presets=presets, plans=plans, errors=errors)
 
 @bp.route('/scrapers/download/<scraper_id>', methods=['POST', 'get'])
 def show_download_scraper_data(scraper_id):
