@@ -13,9 +13,11 @@ class ScraperInstance(object):
         self.visited_urls = scraper['visited_urls']
         self.found_urls = scraper['found_urls']
         self.url_index = int(scraper['url_index'])
+        self.domain_restrict = scraper['domain_restrict']
+        self.location = scraper['location']
 
         if len(self.found_urls) == 0:
-            self.found_urls.append(scraper['location'])
+            self.found_urls.append(self.location)
 
     def visit_url(self, url):
         try:
@@ -56,6 +58,11 @@ class ScraperInstance(object):
 
     def tick(self):
         current_url = self.found_urls[self.url_index]
+
+        if self.domain_restrict:
+            if not self.location in current_url:
+                self.found_urls.pop(self.url_index)
+                return None
 
         self.visit_url(current_url)
 
