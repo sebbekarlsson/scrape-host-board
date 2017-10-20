@@ -416,6 +416,8 @@ p, a {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     padding-top: 0.5rem; }
+    .view-admin .view-admin-content .form {
+      padding-bottom: 1rem; }
   .view-admin .view-admin-mobile-menu {
     position: fixed;
     left: 0;
