@@ -6,8 +6,9 @@ class ScraperService(object):
 
     def __init__(self):
         self.scrapers = []
-        self.scrapers = get_active_scrapers()
     
     def tick(self):
+        self.scrapers = get_active_scrapers()
+
         for scraper in self.scrapers:
             scraper.tick()

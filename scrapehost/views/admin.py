@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template, redirect, request
+from flask import Blueprint, render_template, redirect, request, Response
 from scrapehost.utils import login_required, get_current_user
 from scrapehost.mongo import db
 from scrapehost.models import Scraper
 from bson.objectid import ObjectId
+import json
 
 
 bp = Blueprint(__name__, __name__, template_folder='templates', url_prefix='/admin')
@@ -95,6 +96,19 @@ def show_scrapers_edit(scraper_id):
         })
 
     return render_template('admin/scraper_editor.html', scraper=scraper, errors=errors)
+
+@bp.route('/scrapers/download/<scraper_id>', methods=['POST', 'get'])
+def show_download_scraper_data(scraper_id):
+    if scraper_id:
+        
+        scraper = db.collections.find_one({
+            'structure': '#Scraper',
+            '_id': ObjectId(scraper_id)
+        })
+
+        return Response(json.dumps(scraper['data']),
+            mimetype='application/json',
+            headers={'Content-Disposition':'attachment;filename=data.json'})
 
 @bp.route('/messages')
 @login_required

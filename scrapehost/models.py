@@ -48,7 +48,7 @@ class Scraper(DBObject):
             user_id=None,
             status=1,
             query=None,
-            data=None,
+            data=[],
             domain_restrict=False,
             *args,
             **kwargs

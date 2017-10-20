@@ -52,11 +52,18 @@ class ScraperInstance(object):
                     self.found_urls.append(href)
             
             # perform user query
-            if self.is_query_ok(self.query):
-                try:
-                    exec(self.query)
-                except:
-                    return None
+            if self.query:
+                if self.is_query_ok(self.query):
+                    try:
+                        exec(self.query)
+                    except:
+                        return None
+
+
+        if self.url_index < len(self.found_urls) - 1:
+            self.url_index += 1
+        else:
+            self.url_index = 0
 
         db.collections.update_one({
             'structure': '#Scraper',
@@ -64,7 +71,7 @@ class ScraperInstance(object):
         },
         {
             '$set': {
-                'url_index': self.url_index,
+                'url_index': int(self.url_index) + 1,
                 'visited_urls': self.visited_urls,
                 'found_urls': self.found_urls,
                 'data': self.data
@@ -81,8 +88,3 @@ class ScraperInstance(object):
                 return None
 
         self.visit_url(current_url)
-
-        if self.url_index < len(self.found_urls) - 1:
-            self.url_index += 1
-        else:
-            self.url_index = 0

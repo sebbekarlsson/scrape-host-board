@@ -55,7 +55,7 @@
         </label>
         <div class='push-down'>
             <input type='submit' class='btn btn-primary' name='save' value='Save'/>
-            <a href='#' class='btn btn-primary push-right'><i class='material-icons'>cloud_download</i>Download Data</a>
+            <a href='/admin/scrapers/download/{{ scraper._id }}' target='_blank' class='btn btn-primary push-right'><i class='material-icons'>cloud_download</i>Download Data ({{ scraper.data | length }})</a>
             <input type='submit' class='btn btn-warning push-right' name='delete' value='Delete'/>
         </div>
         {% include 'components/errors.html' %}
@@ -68,12 +68,14 @@
                         <tr>
                             <th>URL Index</th>
                             <th>URL</th>
+                            <th>Data</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>{{ scraper.url_index }}</td>
                             <td>{{ scraper.found_urls[scraper.url_index] }}</td>
+                            <td>{{ scraper.data | length }}</td>
                         </tr>
                     </tbody>
                 </table>
