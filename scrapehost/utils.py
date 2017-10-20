@@ -45,14 +45,20 @@ def get_scraper_plans():
     return [
         {
             "name": "basic",
-            "price": 40 
+            "price": 40,
+            "data_slots": 1200,
+            "code_lines": 25
         },
         {
             "name": "standard",
-            "price": 50 
+            "price": 50,
+            "data_slots": 10000,
+            "code_lines": 100
         },
         {
             "name": "Professional",
-            "price": 90 
+            "price": 90,
+            "data_slots": 100000,
+            "code_lines": 1000
         }
     ]
