@@ -31,6 +31,7 @@ def run():
                 'utils.js',
                 'navbar.js',
                 'admin-mobile-menu.js',
+                'scraper-editor.js',
                 'app.js',
                 filters=['jsmin'],
                 output='js/packed.js'

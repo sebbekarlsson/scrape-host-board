@@ -2,7 +2,7 @@
 
 
 {% block admin_content %}
-    <form class='form' method='POST'>
+    <form class='form' method='POST' id='scraper-editor'>
         <label for='scraper-name'>
             <p>Name</p>
             <input
@@ -22,7 +22,8 @@
         <label for='scraper-query'>
             <label for='scraper-query-presets'>
                 <p>Query presets</p>
-                <select name='scraper-query-preset'>
+                <select name='scraper-query-preset' id='scraper-query-preset'>
+                    <option value='undefined' data-code=''>- Select preset -</option>
                     {% for preset in presets %}
                         <option value='{{ preset.name }}' data-code='{{ preset.code }}'>{{ preset.name }}</option>
                     {% endfor %}

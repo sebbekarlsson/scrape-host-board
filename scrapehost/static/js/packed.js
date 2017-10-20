@@ -3,4 +3,5 @@ y=0;var opacity=Math.min(0.5,y*0.002);var rgba='rgba(0, 0, 0, '+opacity+')';navb
 return;var admin_menu=document.getElementById('admin-mobile-menu');if(admin_menu==null)
 return;admin_menu_btn.addEventListener('click',function(e){if(admin_menu.getAttribute('data-active')=='0')
 admin_menu.setAttribute('data-active',1);else
-admin_menu.setAttribute('data-active',0);});});
+admin_menu.setAttribute('data-active',0);});});document.addEventListener('DOMContentLoaded',function(e){var scraper_editor=document.getElementById('scraper-editor');if(scraper_editor==null)
+return;var scraper_preset_select=document.getElementById('scraper-query-preset');var scraper_query_textarea=document.getElementById('scraper-query');if(scraper_preset_select!=null&&scraper_query_textarea!=null){scraper_preset_select.addEventListener('change',function(e){scraper_query_textarea.innerHTML=this.options[this.selectedIndex].getAttribute('data-code');});}});

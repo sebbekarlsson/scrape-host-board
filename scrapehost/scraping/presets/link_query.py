@@ -1,4 +1,4 @@
-images = document.find_all('a')
+links = document.find_all('a')
 
 
 for link in links:

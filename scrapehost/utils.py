@@ -4,6 +4,7 @@ from scrapehost.mongo import db
 from bson.objectid import ObjectId
 from bs4 import BeautifulSoup
 import glob
+import os
 
 
 def is_loggedin():
@@ -35,7 +36,7 @@ def get_scraper_query_presets():
 
     for preset in presets_files:
         with open(preset) as pfile:
-            presets.append({'name': preset, 'code': pfile.read()})
+            presets.append({'name': os.path.basename(preset), 'code': pfile.read()})
         pfile.close()
 
     return presets
