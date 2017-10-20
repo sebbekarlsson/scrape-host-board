@@ -4,7 +4,7 @@ from scrapehost.scraping.ScraperService import ScraperService
 if __name__ == '__main__':
     service = ScraperService()
     
-    # game loop thinkstyle
+    print('Starting scraping service...')
     try:
         while True:
             service.tick()

@@ -11,4 +11,5 @@ class ScraperService(object):
         self.scrapers = get_active_scrapers()
 
         for scraper in self.scrapers:
+            print('Ticking scraper...')
             scraper.tick()
