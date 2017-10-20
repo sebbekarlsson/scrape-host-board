@@ -50,6 +50,7 @@ class Scraper(DBObject):
             query=None,
             data=[],
             domain_restrict=False,
+            plan=1, # 0 = basic, 1 = standard, 2 = pro
             *args,
             **kwargs
             ):
@@ -64,3 +65,4 @@ class Scraper(DBObject):
         self.query = query
         self.data = data
         self.domain_restrict = domain_restrict
+        self.plan = plan
