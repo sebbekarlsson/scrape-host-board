@@ -52,6 +52,7 @@ class ScraperInstance(object):
                     self.found_urls.append(href)
             
             # perform user query
+            document = soup
             if self.query:
                 if self.is_query_ok(self.query):
                     try:
