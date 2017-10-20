@@ -483,6 +483,8 @@ p, a {
   color: black;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   transition: .2s; }
+  .scraper-plan-card h1, .scraper-plan-card h2, .scraper-plan-card h3, .scraper-plan-card h4, .scraper-plan-card h5, .scraper-plan-card h6 {
+    text-transform: capitalize; }
   .scraper-plan-card[data-selected='1'], .scraper-plan-card:hover {
     background-color: #6CCAA3;
     color: white;
