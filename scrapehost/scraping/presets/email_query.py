@@ -7,4 +7,5 @@ for ptag in ptags:
 
         for word in words:
             if '@' in word:
-                self.data.append(word)
+                if word not in self.data:
+                    self.data.append(word)
