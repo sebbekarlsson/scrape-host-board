@@ -27,8 +27,9 @@ class ScraperInstance(object):
             self.found_urls.append(self.location)
 
     def is_query_ok(self, query):
-        return 'import' not in query and 'db.' and 'request' not in query\
-                and query.count('\n') < 25
+        return 'import' not in query and 'db.' not in query\
+                and 'request' not in query and 'open(' not in query\
+                and 'with ' not in query and query.count('\n') < 25
 
     def visit_url(self, url, collect_data):
         if collect_data:

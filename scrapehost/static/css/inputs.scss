@@ -66,6 +66,8 @@
     border-bottom-style: solid;
     border-bottom-color: $color_main;
     border-bottom-width: 1px;
+    @include font-default();
+    font-size: 100%;
 }
 
 .form {

@@ -179,7 +179,9 @@
   width: 100%;
   border-bottom-style: solid;
   border-bottom-color: #6CCAA3;
-  border-bottom-width: 1px; }
+  border-bottom-width: 1px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 100%; }
 
 .form h2 {
   margin-bottom: 2rem;
