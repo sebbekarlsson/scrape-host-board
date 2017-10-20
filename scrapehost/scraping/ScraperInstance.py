@@ -15,9 +15,17 @@ class ScraperInstance(object):
         self.url_index = int(scraper['url_index'])
         self.domain_restrict = scraper['domain_restrict']
         self.location = scraper['location']
+        self.query = scraper['query']
+        self.data = scraper['data']
+
+        if not self.data:
+            self.data = []
 
         if len(self.found_urls) == 0:
             self.found_urls.append(self.location)
+
+    def is_query_ok(self, query):
+        return 'import' not in query and 'db.' and 'request' not in query
 
     def visit_url(self, url):
         try:
@@ -42,6 +50,13 @@ class ScraperInstance(object):
                 
                 if href not in self.found_urls:
                     self.found_urls.append(href)
+            
+            # perform user query
+            if self.is_query_ok(self.query):
+                try:
+                    exec(self.query)
+                except:
+                    return None
 
         db.collections.update_one({
             'structure': '#Scraper',
@@ -51,7 +66,8 @@ class ScraperInstance(object):
             '$set': {
                 'url_index': self.url_index,
                 'visited_urls': self.visited_urls,
-                'found_urls': self.found_urls
+                'found_urls': self.found_urls,
+                'data': self.data
             }
         }
         )

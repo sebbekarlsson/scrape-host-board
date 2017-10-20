@@ -2,6 +2,7 @@ from functools import wraps
 from flask import session, redirect
 from scrapehost.mongo import db
 from bson.objectid import ObjectId
+from bs4 import BeautifulSoup
 
 
 def is_loggedin():
