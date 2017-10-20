@@ -34,6 +34,19 @@ def show_scrapers_edit(scraper_id):
     scraper = None
 
     if request.method == 'POST':
+        if request.form.get('delete-data'):
+            if scraper_id:
+                db.collections.update_one({
+                    'structure': '#Scraper',
+                    '_id': ObjectId(scraper_id)
+                },
+                {
+                    '$set': {
+                        'data': []    
+                    }
+                }
+                )
+
         if request.form.get('delete'):
             if scraper_id:
                 db.collections.remove({
