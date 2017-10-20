@@ -20,8 +20,18 @@
             type='text' class='input-text input-text-contrast' name='scraper-location' placeholder='http://example.com/'/>
         </label>
         <label for='scraper-query'>
-            <p>Query <a title='how to write a scraper-query' href='/site-posts/scraper-query'>(?)</a></p>
-            <textarea class='input-textarea' name='scraper-query' id='scraper-query'>{% if scraper %}{{ scraper.query }}{% endif %}</textarea>
+            <label for='scraper-query-presets'>
+                <p>Query presets</p>
+                <select>
+                    <option value='0'>Image query</option>
+                    <option value='1'>Email query</option>
+                    <option value='2'>Link query</option>
+                </select>
+            </label>
+            <div class='push-down'>
+                <p>Query <a title='how to write a scraper-query' href='/site-posts/scraper-query'>(?)</a></p>
+                <textarea class='input-textarea' name='scraper-query' id='scraper-query'>{% if scraper %}{{ scraper.query }}{% endif %}</textarea>
+            </div>
         </label>
         <label>
             <p class='push-down'>Restrict to one domain</p>
