@@ -60,22 +60,24 @@
         </div>
         {% include 'components/errors.html' %}
     </form>
-    <div class='site-section'>
-        <div class='text-content'>
-            <table class='table'>
-                <thead>
-                    <tr>
-                        <th>URL Index</th>
-                        <th>URL</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ scraper.url_index }}</td>
-                        <td>{{ scraper.found_urls[scraper.url_index] }}</td>
-                    </tr>
-                </tbody>
-            </table>
+    {% if scraper.found_urls | length > 0 %}
+        <div class='site-section'>
+            <div class='text-content'>
+                <table class='table'>
+                    <thead>
+                        <tr>
+                            <th>URL Index</th>
+                            <th>URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ scraper.url_index }}</td>
+                            <td>{{ scraper.found_urls[scraper.url_index] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}
