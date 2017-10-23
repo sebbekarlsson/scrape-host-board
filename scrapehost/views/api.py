@@ -18,7 +18,7 @@ def show_scraper_data(scraper_id):
     if request.args.get('l'):
         args_l = request.args.get('l')
 
-        limit = int(args_l) if args_l.isdigit() else limit
+        limit = min(int(args_l) if args_l.isdigit() else limit, 100)
     
     try:
         scraper_id = ObjectId(scraper_id)
