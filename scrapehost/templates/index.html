@@ -10,10 +10,10 @@
                     <p>
                     The web is full of information, let's harvest it.
                     </p>
-                    <a class='btn btn-primary' href='/register'>Get started</a>
+                    <a class='btn btn-primary' href='{% if not is_loggedin() %}/register{% else %}/admin{% endif %}'>Get started</a>
                 </section>
                 <section>
-                    <i class='material-icons' style='font-size: 5em;'>search</i>
+                    <img src='{{ url_for('static', filename='image/scrape-host-window.jpg') }}'/> 
                 </section>
             </div>
         </div>
