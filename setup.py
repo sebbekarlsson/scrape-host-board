@@ -12,7 +12,8 @@ setup(
         'pymongo',
         'bcrypt',
         'requests',
-        'bs4'
+        'bs4',
+        'pytest'
     ],
     packages=[
         'scrapehost'
