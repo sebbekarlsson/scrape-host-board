@@ -5,7 +5,7 @@ from bson.objectid import ObjectId
 
 bp = Blueprint(__name__, __name__, template_folder='templates', url_prefix='/api')
 
-@bp.route('/scraper/data/<scraper_id>')
+@bp.route('/scraper/<scraper_id>/data')
 def show_scraper_data(scraper_id):
     try:
         scraper_id = ObjectId(scraper_id)
