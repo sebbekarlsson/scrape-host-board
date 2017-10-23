@@ -42,7 +42,9 @@ def show_scrapers_edit(scraper_id):
                 },
                 {
                     '$set': {
-                        'data': []    
+                        'data': [],
+                        'found_urls': [],
+                        'url_index': 0
                     }
                 }
                 )
