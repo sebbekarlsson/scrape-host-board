@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
 from requests import Session
-from requests.exceptions import InvalidSchema, MissingSchema, ConnectionError
+from requests.exceptions import (
+    InvalidSchema,
+    MissingSchema,
+    ConnectionError,
+    SSLError
+)
 from bs4 import BeautifulSoup
 from scrapehost.mongo import db
 import urlparse
+from scrapehost.scraping.robotstxt import RobotsTXTParser
 
 
 class ScraperInstance(object):
@@ -19,6 +25,7 @@ class ScraperInstance(object):
         self.location = scraper['location']
         self.query = scraper['query']
         self.data = scraper['data']
+        self.robotstxt = RobotsTXTParser()
 
         if not self.data:
             self.data = []
@@ -32,17 +39,30 @@ class ScraperInstance(object):
                 and 'with ' not in query and query.count('\n') < 25
 
     def visit_url(self, url, collect_data):
+        parsed_url = urlparse.urlparse(url)
+
         if collect_data:
             all_ok = True
+            
+            self.robotstxt.set_robots_url('{}://{}/robots.txt'.format(
+                parsed_url.scheme,
+                parsed_url.netloc
+            ))
 
-            try:
-                print('{} is visiting: {}'.format(self.name, url))
-            except:
-                print('...')
+            if self.robotstxt.is_allowed(parsed_url.path):
+                try:
+                    print('{} is visiting: {}'.format(self.name, url))
+                except:
+                    print('...')
 
-            try:
-                res = self.session.get(url)
-            except (InvalidSchema, MissingSchema, ConnectionError):
+                print('robots.txt says it is okay!')
+
+                try:
+                    res = self.session.get(url)
+                except (InvalidSchema, MissingSchema, ConnectionError):
+                    self.found_urls.pop(self.url_index)
+                    all_ok = False
+            else:
                 self.found_urls.pop(self.url_index)
                 all_ok = False
 
