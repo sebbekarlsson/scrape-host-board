@@ -51,6 +51,7 @@ class Scraper(DBObject):
             data=[],
             domain_restrict=False,
             plan=1, # 0 = basic, 1 = standard, 2 = pro
+            error=None,
             *args,
             **kwargs
             ):

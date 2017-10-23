@@ -32,6 +32,11 @@
             <div class='push-down'>
                 <p>Query <a title='how to write a scraper-query' href='/site-posts/scraper-query'>(?)</a></p>
                 <textarea class='input-textarea' name='scraper-query' id='scraper-query'>{% if scraper %}{{ scraper.query }}{% endif %}</textarea>
+                {% if scraper.error %}
+                    <div class='push-down form-errors'>
+                        <div class='form-errors-error'>{{ scraper.error }}</div>
+                    </div>
+                {% endif %}
             </div>
         </label>
         <label>

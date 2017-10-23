@@ -26,6 +26,7 @@ class ScraperInstance(object):
         self.query = scraper['query']
         self.data = scraper['data']
         self.robotstxt = RobotsTXTParser()
+        self.error = scraper['error']
 
         if not self.data:
             self.data = []
@@ -89,8 +90,10 @@ class ScraperInstance(object):
                             try:
                                 print('Executing user query...')
                                 exec(self.query)
-                            except:
-                                return None
+                            except Exception as e:
+                                self.error = str(e)
+                            else:
+                                self.error = None
 
         if self.url_index < len(self.found_urls) - 1:
             self.url_index += 1
@@ -106,7 +109,8 @@ class ScraperInstance(object):
             '$set': {
                 'url_index': int(self.url_index) + 1,
                 'found_urls': self.found_urls,
-                'data': self.data
+                'data': self.data,
+                'error': self.error
             }
         }
         )

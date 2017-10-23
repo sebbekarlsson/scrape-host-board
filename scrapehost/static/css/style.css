@@ -500,6 +500,9 @@ p, a {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem; }
 
+.form-errors .form-errors-error {
+  color: #BE5855; }
+
 * {
   margin: 0;
   padding: 0; }
