@@ -491,6 +491,15 @@ p, a {
     transition: .2s;
     cursor: pointer; }
 
+.code {
+  background-color: #6CCAA3;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  box-sizing: border-box;
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem; }
+
 * {
   margin: 0;
   padding: 0; }
