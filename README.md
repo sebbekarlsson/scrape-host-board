@@ -5,6 +5,7 @@
 > How to start the development server
 
 > First make sure you have the following installed:
+
 * Ruby gem sass
 * Python 2.7
 * python-virtualenv
