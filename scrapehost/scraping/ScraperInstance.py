@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 from scrapehost.mongo import db
 import urlparse
 from scrapehost.scraping.robotstxt import RobotsTXTParser
+import os
 
 
 class ScraperInstance(object):
@@ -27,6 +28,15 @@ class ScraperInstance(object):
         self.data = scraper['data']
         self.robotstxt = RobotsTXTParser()
         self.error = scraper['error']
+        self.blocked_extensions = [
+            '.m4a',
+            '.m4v',
+            '.zip',
+            '.tar.gz',
+            '.mov',
+            '.rar',
+            '.pdf'
+        ]
 
         if not self.data:
             self.data = []
@@ -41,8 +51,9 @@ class ScraperInstance(object):
 
     def visit_url(self, url, collect_data):
         parsed_url = urlparse.urlparse(url)
+        ext = os.path.splitext(parsed_url.path)[1].lower()
 
-        if collect_data:
+        if collect_data and ext not in self.blocked_extensions:
             all_ok = True
             
             self.robotstxt.set_robots_url('{}://{}/robots.txt'.format(
@@ -94,6 +105,8 @@ class ScraperInstance(object):
                                 self.error = str(e)
                             else:
                                 self.error = None
+        else:
+            self.found_urls.pop(self.url_index)
 
         if self.url_index < len(self.found_urls) - 1:
             self.url_index += 1
@@ -116,7 +129,11 @@ class ScraperInstance(object):
         )
 
     def tick(self):
-        current_url = self.found_urls[self.url_index]
+        try:
+            current_url = self.found_urls[self.url_index]
+        except IndexError:
+            current_url = self.found_urls[0]
+
         collect_data = True
 
         if self.domain_restrict:
