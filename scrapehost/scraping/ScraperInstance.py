@@ -105,6 +105,8 @@ class ScraperInstance(object):
                                 self.error = str(e)
                             else:
                                 self.error = None
+                        else:
+                            self.error = 'Query contains banned keyword'
         else:
             try:
                 self.found_urls.pop(self.url_index)
