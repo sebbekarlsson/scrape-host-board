@@ -1,0 +1,22 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+
+$badge_size: 24px;
+
+.item-badge {
+    display: inline-block;
+    width: $badge_size;
+    height: $badge_size;
+    line-height: $badge_size;
+    text-align: center;
+    border-radius: $badge_size;
+    @include font-default();
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+
+    &.item-badge-warning {
+        background-color: $color_warning;
+        color: white;
+    }
+}

@@ -30,3 +30,13 @@
         settings
     </section>
 </a>
+{% if not current_user.accepted_agreement %}
+    <a href='/admin/agreement' class='view-admin-menu-item'>
+        <section>
+            <i class='material-icons'>assignment</i>
+        </section>
+        <section>
+            agreement <span class='item-badge item-badge-warning'>!</span>
+        </section>
+    </a>
+{% endif %}

@@ -154,3 +154,8 @@ def show_api():
 @login_required
 def show_settings():
     return render_template('admin/settings.html')
+
+@bp.route('/agreement')
+@login_required
+def show_agreement():
+    return render_template('admin/agreement.html')

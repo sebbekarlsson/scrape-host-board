@@ -1,0 +1,30 @@
+{% extends 'admin/layout.html' %}
+
+
+{% block admin_content %}
+    <form class='form' method='POST'>
+        <div class='text-content'>
+            <h1>Licence</h1>
+
+            
+            <p>Pommy ipsum nutter scally a bit wonky, grub's up off the hook. Bog roll rubbish squirrel upper class bangers and mash the lakes know your onions, Queen Elizabeth odds and sods wedding tackle balderdash hedgehog. Pork scratchings a bit wonky a fiver on the beat it's nicked off with her head tosser, lass hard cheese old boy round our gaff pennyboy. Put me soaps back on cor blimey' pork dripping baffled spam fritters ever so lovely, got a lot of brass Prince Charles you 'avin a laugh. Flip flops challenge you to a duel pants Amelia Pond could be a bit of a git, easy peasy wellies cor blimey' old girl, splendid spiffing jolly. </p>
+
+<p>Ey up nigh wellies cockney on the beat have a gander 10 pence mix, see a man about a dog have a gander bottled it up North and it's cracking flags, absobloodylootely beefeater devonshire cream tea see a man about a dog tip-top. Wind up fancy a cuppa could murder a pint ridiculous marmite knackered, lost her marbles warts and all scrubber absobloodylootely nutter, barmy see a man about a dog oopsy-daisies Elementary my dear Watson. Knows bugger all about nowt morris dancers the fuzz on't goggle box cheerio manky, oopsy-daisies give you a bell tallywhacker Dr. Watson a bit miffed gutted, completely crackers bobby squirrel ey up chuck. </p>
+
+<p>Quid narky put me soaps back on sod's law we'll be 'avin less of that, horses for courses spiffing completely crackers scarper, marvelous marmite lug hole. Kate and Will it's me peepers clock round the earhole scouser bits 'n bobs jellied eels, wind up fork out posh nosh not some sort of dosshouse. Had a barney with the inlaws big light god save the queen oopsy-daisies throw a spanner in the works what a load of cobblers, jammy git doing my nut in jammy git wibbly-wobbly timey-wimey stuff. I'd reet fancy a it's nicked yorkshire mixture munta quid apple and pears, gutted don't get your knickers in a twist skive up the duff round our gaff, bow ties are cool flog a dead horse bit of alright scouser. </p>
+
+<p>Prince Charles jellied eels apple and pears, blighty. </p>
+        
+
+        </div>
+        <label for='agreement-agree'>
+            <p><b>Accept Agreement</b></p>
+            <input
+            {% if current_user.accepted_agreement %}checked{% endif %}
+            type='checkbox' name='agreement-agree' id='agreement-agree'/> <span class='push-right'>I agree</span>
+        </label>
+        <div class='push-down'>
+            <input type='submit' class='btn btn-primary' name='save' value='Save'/>
+        </div>
+    </form>
+{% endblock %}
