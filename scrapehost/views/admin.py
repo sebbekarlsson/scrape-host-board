@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, request, Response
-from scrapehost.utils import login_required, get_current_user, get_scraper_query_presets, get_scraper_plans
+from scrapehost.utils import login_required, agreement_required, get_current_user, get_scraper_query_presets, get_scraper_plans
 from scrapehost.mongo import db
 from scrapehost.models import Scraper, Order
 from bson.objectid import ObjectId
@@ -15,6 +15,7 @@ def show():
 
 @bp.route('/scrapers')
 @login_required
+@agreement_required
 def show_scrapers():
     current_user = get_current_user()
 
@@ -28,6 +29,7 @@ def show_scrapers():
 @bp.route('/scrapers/edit/<scraper_id>', methods=['POST', 'GET'])
 @bp.route('/scrapers/edit', methods=['POST', 'GET'], defaults={'scraper_id': None})
 @login_required
+@agreement_required
 def show_scrapers_edit(scraper_id):
     errors = []
     current_user = get_current_user()
@@ -142,20 +144,40 @@ def show_download_scraper_data(scraper_id):
 
 @bp.route('/messages')
 @login_required
+@agreement_required
 def show_messages():
     return render_template('admin/messages.html')
 
 @bp.route('/api')
 @login_required
+@agreement_required
 def show_api():
     return render_template('admin/api.html')
 
 @bp.route('/settings')
 @login_required
+@agreement_required
 def show_settings():
     return render_template('admin/settings.html')
 
-@bp.route('/agreement')
+@bp.route('/agreement', methods=['POST', 'GET'])
 @login_required
 def show_agreement():
+    current_user = get_current_user()
+
+    if request.method == 'POST':
+        if request.form.get('save'):
+            if request.form.get('agreement-agree'):
+                db.collections.update_one({
+                    'structure': '#User',
+                    '_id': current_user['_id']
+                },
+                {
+                    '$set': {
+                        'accepted_agreement': True
+                    }    
+                })
+
+                return redirect('/admin')
+
     return render_template('admin/agreement.html')

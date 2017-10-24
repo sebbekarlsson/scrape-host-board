@@ -31,6 +31,24 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+def agreement_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        user = get_current_user()
+        redir = False
+        
+        if 'accepted_agreement' not in user:
+            redir = True
+        else:
+            if not user['accepted_agreement']:
+                redir = True
+
+        if redir:
+            return redirect('/admin/agreement')
+        
+        return f(*args, **kwargs)
+    return decorated_function
+
 def get_scraper_query_presets():
     presets = []
     presets_files = glob.glob('scrapehost/scraping/presets/*.py')
