@@ -29,6 +29,7 @@ def run():
             'js_all',
             flask_assets.Bundle(
                 'utils.js',
+                'please-wait.min.js',
                 'navbar.js',
                 'admin-mobile-menu.js',
                 'scraper-editor.js',
