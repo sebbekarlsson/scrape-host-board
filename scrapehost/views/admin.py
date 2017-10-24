@@ -68,6 +68,7 @@ def show_scrapers_edit(scraper_id):
             plan = request.form.get('scraper-plan')
             status = 0
             domain_restrict = False
+            plan_modified = False
 
             if 'http' not in location:
                 errors.append('Location needs to be a valid http/https Address')
@@ -78,8 +79,16 @@ def show_scrapers_edit(scraper_id):
             if request.form.get('scraper-domain_restrict'):
                 domain_restrict = True
 
+            if scraper_id:
+                _scraper = db.collections.find_one({
+                    'structure': '#Scraper',
+                    '_id': ObjectId(scraper_id)
+                })
+
+                plan_modified = int(_scraper['plan']) != int(plan)
+
             if len(errors) == 0:
-                if not scraper_id:
+                if not scraper_id or plan_modified:
                     scraper = Scraper(
                         name=name,
                         location=location,
@@ -96,6 +105,9 @@ def show_scrapers_edit(scraper_id):
                         price=str(plans[int(plan)]['price']),
                         done=False,
                     )
+
+                    if plan_modified and _scraper:
+                        order.object_id = _scraper['_id']
 
                     res = db.collections.insert_one(order.export())
                     order_id = str(res.inserted_id)

@@ -26,7 +26,7 @@ def show_order_scraper():
     })
 
     scraper_price = order['price']
-    order_type = order['structure']
+    order_type = order['object']['structure']
 
 
     payment = Payment({
@@ -69,17 +69,28 @@ def show_order_scraper():
                 }
             })
             
-            res = db.collections.insert_one(order['object'])
+            if not order['object_id']:
+                res = db.collections.insert_one(order['object'])
 
-            db.collections.update_one({
-                'structure': '#Order',
-                '_id': order['_id']
-            },
-            {
-                '$set': {
-                    'object_id': res.inserted_id    
-                }
-            })
+                db.collections.update_one({
+                    'structure': '#Order',
+                    '_id': order['_id']
+                },
+                {
+                    '$set': {
+                        'object_id': res.inserted_id    
+                    }
+                })
+            else:
+                db.collections.update_one({
+                    'structure': order['object']['structure'],
+                    '_id': order['object_id']
+                },
+                {
+                    '$set': {
+                        'plan': int(order['object']['plan'])
+                    }
+                })
 
             for link in payment.links:
                 if link.method == "REDIRECT":
