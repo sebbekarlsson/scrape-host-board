@@ -68,3 +68,23 @@ class Scraper(DBObject):
         self.domain_restrict = domain_restrict
         self.plan = plan
         self.error = error
+
+class Order(DBObject):
+    def __init__(
+            self,
+            object=None,
+            object_id=None,
+            done=False,
+            user_id=None,
+            canceled=False,
+            price=None,
+            *args,
+            **kwargs
+            ):
+        DBObject.__init__(self, *args, **kwargs)
+        self.object = object
+        self.object_id = object_id
+        self.done = done
+        self.user_id = user_id
+        self.canceled = canceled
+        self.price = price

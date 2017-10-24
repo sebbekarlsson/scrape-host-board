@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, request, Response
 from scrapehost.utils import login_required, get_current_user, get_scraper_query_presets, get_scraper_plans
 from scrapehost.mongo import db
-from scrapehost.models import Scraper
+from scrapehost.models import Scraper, Order
 from bson.objectid import ObjectId
 import json
 
@@ -31,6 +31,7 @@ def show_scrapers():
 def show_scrapers_edit(scraper_id):
     errors = []
     current_user = get_current_user()
+    plans = get_scraper_plans()
     scraper = None
 
     if request.method == 'POST':
@@ -87,10 +88,18 @@ def show_scrapers_edit(scraper_id):
                         plan=int(plan)
                     )
 
-                    res = db.collections.insert_one(scraper.export())
-                    scraper_id = str(res.inserted_id)
+                    order = Order(
+                        object=scraper.export(),
+                        user_id=current_user['_id'],
+                        price=str(plans[int(plan)]['price']),
+                        done=False,
+                    )
+
+                    res = db.collections.insert_one(order.export())
+                    order_id = str(res.inserted_id)
+
+                    return redirect('/order?order_id={}'.format(order_id))
                     
-                    return redirect('/admin/scrapers/edit/{}'.format(scraper_id))
                 else:
                     db.collections.update_one({
                         '_id': ObjectId(scraper_id)
@@ -115,7 +124,6 @@ def show_scrapers_edit(scraper_id):
 
     
     presets = get_scraper_query_presets()
-    plans = get_scraper_plans()
 
     return render_template('admin/scraper_editor.html', scraper=scraper, presets=presets, plans=plans, errors=errors)
 

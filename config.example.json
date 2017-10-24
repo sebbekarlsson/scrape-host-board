@@ -1,0 +1,8 @@
+{
+    "host_full": "http://localhost:5000",
+    "paypal": {
+        "mode": "sandbox",
+        "client_id": "abc123",
+        "client_secret": "abc123"
+    }
+}

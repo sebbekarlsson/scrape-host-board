@@ -5,6 +5,7 @@ from bson.objectid import ObjectId
 from bs4 import BeautifulSoup
 import glob
 import os
+import json
 
 
 def is_loggedin():
@@ -42,23 +43,8 @@ def get_scraper_query_presets():
     return presets
 
 def get_scraper_plans():
-    return [
-        {
-            "name": "basic",
-            "price": 40,
-            "data_slots": 1200,
-            "code_lines": 25
-        },
-        {
-            "name": "standard",
-            "price": 50,
-            "data_slots": 10000,
-            "code_lines": 100
-        },
-        {
-            "name": "Professional",
-            "price": 90,
-            "data_slots": 100000,
-            "code_lines": 1000
-        }
-    ]
+    with open('pricing.json') as pricingfile:
+        pricing_obj = json.loads(pricingfile.read())
+    pricingfile.close()
+
+    return pricing_obj['scraper_plans']

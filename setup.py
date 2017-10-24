@@ -13,7 +13,10 @@ setup(
         'bcrypt',
         'requests',
         'bs4',
-        'pytest'
+        'pytest',
+        'braintreehttp',
+        'responses',
+        'paypalrestsdk==1.1.0'
     ],
     packages=[
         'scrapehost'
