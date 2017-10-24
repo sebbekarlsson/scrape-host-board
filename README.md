@@ -6,10 +6,10 @@
 
 > First make sure you have the following installed:
 
-* Ruby gem sass
-* Python 2.7
-* python-virtualenv
-* MongoDB
+* [Ruby gem sass](http://sass-lang.com/install)
+* [Python 2.7](https://www.python.org/download/releases/2.7/)
+* [python-virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
+* [MongoDB](https://docs.mongodb.com/manual/installation/)
 
 ## Follow these steps to get started:
 
