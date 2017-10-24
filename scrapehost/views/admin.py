@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, request, Response
-from scrapehost.utils import login_required, agreement_required, get_current_user, get_scraper_query_presets, get_scraper_plans
+from scrapehost.utils import login_required, agreement_required, get_current_user, get_scraper_query_presets, get_scraper_plans, get_user_agreement
 from scrapehost.mongo import db
 from scrapehost.models import Scraper, Order
 from bson.objectid import ObjectId
@@ -164,6 +164,7 @@ def show_settings():
 @login_required
 def show_agreement():
     current_user = get_current_user()
+    agreement_content = get_user_agreement()
 
     if request.method == 'POST':
         if request.form.get('save'):
@@ -174,10 +175,11 @@ def show_agreement():
                 },
                 {
                     '$set': {
-                        'accepted_agreement': True
+                        'accepted_agreement': True,
+                        'agreement_content': agreement_content
                     }    
                 })
 
                 return redirect('/admin')
 
-    return render_template('admin/agreement.html')
+    return render_template('admin/agreement.html', agreement_content=agreement_content)

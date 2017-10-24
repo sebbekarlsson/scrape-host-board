@@ -66,3 +66,12 @@ def get_scraper_plans():
     pricingfile.close()
 
     return pricing_obj['scraper_plans']
+
+def get_user_agreement():
+    content = ''
+
+    with open('user-agreement.txt') as agreementfile:
+        content = agreementfile.read()
+    agreementfile.close()
+
+    return content
