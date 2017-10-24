@@ -106,7 +106,10 @@ class ScraperInstance(object):
                             else:
                                 self.error = None
         else:
-            self.found_urls.pop(self.url_index)
+            try:
+                self.found_urls.pop(self.url_index)
+            except IndexError:
+                pass
 
         if self.url_index < len(self.found_urls) - 1:
             self.url_index += 1
