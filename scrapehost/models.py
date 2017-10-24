@@ -67,3 +67,4 @@ class Scraper(DBObject):
         self.data = data
         self.domain_restrict = domain_restrict
         self.plan = plan
+        self.error = error

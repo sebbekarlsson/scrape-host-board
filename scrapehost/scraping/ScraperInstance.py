@@ -27,7 +27,7 @@ class ScraperInstance(object):
         self.query = scraper['query']
         self.data = scraper['data']
         self.robotstxt = RobotsTXTParser()
-        self.error = scraper['error']
+        self.error = scraper['error'] if 'error' in scraper else None
         self.blocked_extensions = [
             '.m4a',
             '.m4v',
