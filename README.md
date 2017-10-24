@@ -55,3 +55,13 @@
     python scrapehost/scraping
 
 > The scraping service should now be running.
+
+# Unit tests
+> First make sure you have sourced the `venv` (python-virtualenv) and executed
+> `setup.py`
+
+> Then run:
+
+    pytest .
+
+> This will run all tests
