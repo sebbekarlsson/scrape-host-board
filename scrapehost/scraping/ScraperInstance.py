@@ -47,7 +47,7 @@ class ScraperInstance(object):
     def is_query_ok(self, query):
         return 'import' not in query and 'db.' not in query\
                 and 'request' not in query and 'open(' not in query\
-                and 'with ' not in query and query.count('\n') < 25
+                and 'with ' and 'while ' not in query and query.count('\n') < 25
 
     def visit_url(self, url, collect_data):
         parsed_url = urlparse.urlparse(url)
