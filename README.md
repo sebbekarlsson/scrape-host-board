@@ -38,6 +38,12 @@
 > Depending on your operating system, you might have to execute the command
 > above multiple times.
 
+### Start MongoDB
+
+    mongod
+
+> Make sure MongoDB is running
+
 ### Start the web server
 
     python web.py
