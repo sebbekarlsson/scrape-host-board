@@ -30,12 +30,14 @@ class User(DBObject):
             self,
             email=None,
             password=None,
+            accepted_agreement=False,
             *args,
             **kwargs
             ):
         DBObject.__init__(self, *args, **kwargs)
         self.email = email
         self.password = password
+        self.accepted_agreement = accepted_agreement
 
 class Scraper(DBObject):
     def __init__(
