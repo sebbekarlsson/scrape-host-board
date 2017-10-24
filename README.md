@@ -13,6 +13,12 @@
 
 ## Follow these steps to get started:
 
+### Create the config file
+
+    cp config.example.json config.json
+
+> Edit `config.json` to match your settings.
+
 ### Create a virtualenv
 
     virtualenv -p /usr/bin/python2.7 ./venv
