@@ -2,5 +2,28 @@
 
 
 {% block admin_content %}
-settings
+    <form class='form' method='POST'>
+        <div class='text-content'>
+            <h2>Authentication</h2>
+            <label for='old-password'>
+                <p>Old password</p>
+                <input type='password' class='input-text input-text-contrast' name='old-password'/>
+            </label>
+            <label for='new-password'>
+                <p>New password</p>
+                <input type='password' class='input-text input-text-contrast' name='new-password'/>
+            </label>
+        </div>
+        <div class='push-down'>
+            <input type='submit' class='btn btn-primary' name='password-update' value='Change password'/>
+        </div>
+    </form>
+    <form class='form push-down' method='POST'>
+        <div class='text-content'>
+            <h2>User Agreement</h2>
+            <input type='submit' class='btn btn-warning' name='agreement-reset' value='Reset'/>
+
+            <p class='push-down'>You will have to agree again to be able to use our services.</p>
+        </div>
+    </form>
 {% endblock %}

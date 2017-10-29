@@ -27,4 +27,4 @@ def is_service_running(service_name):
         return False
 
 def is_scraping_service_running():
-    return is_service_running('scrape.host.scraper.service')
+    return is_service_running('scrape.host.scraping.service')

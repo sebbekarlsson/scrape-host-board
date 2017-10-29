@@ -257,9 +257,11 @@ h1, h2, h3, h4, h5, h6, p, a {
   -webkit-font-smoothing: antialiased; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-size: 2em;
   font-weight: 400;
   font-family: 'Source Sans Pro', sans-serif; }
+
+h1 {
+  font-size: 2em; }
 
 p, a {
   font-weight: 200;

@@ -1,0 +1,9 @@
+[Unit]
+Description=scrape.host scraping service
+
+[Service]
+Type=forking
+ExecStart=/bin/bash -c 'cd /var/www/scrape.host; ./venv/bin/python scrape.host/scraping'
+
+[Install]
+WantedBy=multi-user.target
