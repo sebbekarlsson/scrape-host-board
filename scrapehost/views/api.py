@@ -10,6 +10,17 @@ def show_scraper_data(scraper_id):
     offset = 0
     limit = 100
 
+    if not request.args.get('token'):
+        return jsonify({'error': 'No token provided'})
+
+    existing_user = db.collections.find_one({
+        'structure': '#User',
+        'token': request.args.get('token')
+    })
+
+    if not existing_user:
+        return jsonify({'error': 'Bad token'})
+
     if request.args.get('o'):
         args_o = request.args.get('o')
 
