@@ -32,6 +32,7 @@ class User(DBObject):
             password=None,
             accepted_agreement=False,
             agreement_content=None, # the accepted agreement
+            token=None,
             *args,
             **kwargs
             ):
@@ -40,6 +41,7 @@ class User(DBObject):
         self.password = password
         self.accepted_agreement = accepted_agreement
         self.agreement_content = agreement_content
+        self.token = token
 
 class Scraper(DBObject):
     def __init__(

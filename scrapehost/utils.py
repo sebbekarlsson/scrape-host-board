@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 import glob
 import os
 import json
+import random
 
 
 def is_loggedin():
@@ -76,3 +77,15 @@ def get_user_agreement():
     agreementfile.close()
 
     return content.decode('utf-8')
+
+def get_random_token(length=32):
+    token = ''
+    symbols = 'abcdefghijklmnopqrstuvwxyz0123456789_;'
+
+    for i in range(0, length):
+        symbol = symbols[random.randint(0, len(symbols) - 1)]
+        symbol = symbol.upper() if random.randint(0, 3) == 0 else symbol
+
+        token += symbol
+
+    return token

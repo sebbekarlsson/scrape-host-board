@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, request, redirect
 from scrapehost.mongo import db
 from scrapehost.models import User
-from scrapehost.password import get_hashed_password 
+from scrapehost.password import get_hashed_password
+from scrapehost.utils import get_random_token
 
 
 bp = Blueprint(__name__, __name__, template_folder='templates')
@@ -40,7 +41,8 @@ def show():
 
                 user = User(
                     email=email,
-                    password=password
+                    password=password,
+                    token=get_random_token()
                 )
 
                 res = db.collections.insert_one(user.export())
