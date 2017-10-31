@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from functools import wraps
 from flask import session, redirect
 from scrapehost.mongo import db
@@ -74,4 +75,4 @@ def get_user_agreement():
         content = agreementfile.read()
     agreementfile.close()
 
-    return content
+    return content.decode('utf-8')

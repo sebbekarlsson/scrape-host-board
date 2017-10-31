@@ -8,12 +8,12 @@
 </a>
 <!--<a href='/admin/messages' class='view-admin-menu-item'>
     <section>
-        <i class='material-icons'>message</i>
+    <i class='material-icons'>message</i>
     </section>
     <section>
-        messages
+    messages
     </section>
-</a>-->
+    </a>-->
 <a href='/admin/api' class='view-admin-menu-item'>
     <section>
         <i class='material-icons'>swap_calls</i>
@@ -30,13 +30,12 @@
         settings
     </section>
 </a>
-{% if not current_user.accepted_agreement %}
-    <a href='/admin/agreement' class='view-admin-menu-item'>
-        <section>
-            <i class='material-icons'>assignment</i>
-        </section>
-        <section>
-            agreement <span class='item-badge item-badge-warning'>!</span>
-        </section>
-    </a>
-{% endif %}
+
+<a href='/admin/agreement' class='view-admin-menu-item'>
+    <section>
+        <i class='material-icons'>assignment</i>
+    </section>
+    <section>
+        agreement {% if not current_user.accepted_agreement %}<span class='item-badge item-badge-warning'>!</span>{% endif %}
+    </section>
+</a>

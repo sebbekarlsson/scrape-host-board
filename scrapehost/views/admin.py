@@ -180,18 +180,20 @@ def show_agreement():
 
     if request.method == 'POST':
         if request.form.get('save'):
-            if request.form.get('agreement-agree'):
-                db.collections.update_one({
-                    'structure': '#User',
-                    '_id': current_user['_id']
-                },
-                {
-                    '$set': {
-                        'accepted_agreement': True,
-                        'agreement_content': agreement_content
-                    }    
-                })
+            agreed = False
 
-                return redirect('/admin')
+            if request.form.get('agreement-agree'):
+                agreed = True
+            
+            db.collections.update_one({
+                'structure': '#User',
+                '_id': current_user['_id']
+            },
+            {
+                '$set': {
+                    'accepted_agreement': agreed,
+                    'agreement_content': agreement_content
+                }    
+            })
 
     return render_template('admin/agreement.html', agreement_content=agreement_content)
