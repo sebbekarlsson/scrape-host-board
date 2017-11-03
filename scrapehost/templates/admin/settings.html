@@ -15,7 +15,9 @@
             </label>
         </div>
         <div class='push-down'>
-            <input type='submit' class='btn btn-primary' name='password-update' value='Change password'/>
+            <input type='submit' class='btn btn-primary' name='save' value='Change password'/>
         </div>
+        {% if msg %}<p>{{ msg }}</p>{% endif %}
     </form>
+    {% include 'components/errors.html' %}
 {% endblock %}

@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, request, Response
 from scrapehost.utils import login_required, agreement_required, get_current_user, get_scraper_query_presets, get_scraper_plans, get_user_agreement
 from scrapehost.mongo import db
 from scrapehost.models import Scraper, Order
+from scrapehost.password import check_password, get_hashed_password
 from bson.objectid import ObjectId
 import json
 
@@ -166,11 +167,34 @@ def show_messages():
 def show_api():
     return render_template('admin/api.html')
 
-@bp.route('/settings')
+@bp.route('/settings', methods=['POST', 'GET'])
 @login_required
 @agreement_required
 def show_settings():
-    return render_template('admin/settings.html')
+    current_user = get_current_user()
+    msg = None
+    errors = []
+
+    if request.method == 'POST':
+        old_pass = request.form.get('old-password')
+        new_password = request.form.get('new-password')
+        
+        if not check_password(current_user['password'], old_pass):
+            errors.append('Wrong password')
+        else:
+            db.collections.update_one({
+                'structure': '#User',
+                '_id': current_user['_id']
+            },
+            {
+                '$set': {
+                    'password': get_hashed_password(new_password)
+                }
+            })
+
+            msg = 'Password changed'
+
+    return render_template('admin/settings.html', msg=msg, errors=errors)
 
 @bp.route('/agreement', methods=['POST', 'GET'])
 @login_required
