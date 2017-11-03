@@ -1,6 +1,4 @@
-import time
 import datetime
-import json
 
 
 class DBObject(object):
@@ -36,7 +34,7 @@ class User(DBObject):
             *args,
             **kwargs
             ):
-        DBObject.__init__(self, *args, **kwargs)
+        super(User, self).__init__(*args, **kwargs)
         self.email = email
         self.password = password
         self.accepted_agreement = accepted_agreement
@@ -61,7 +59,7 @@ class Scraper(DBObject):
             *args,
             **kwargs
             ):
-        DBObject.__init__(self, *args, **kwargs)
+        super(Scraper, self).__init__(*args, **kwargs)
         self.name = name
         self.location = location
         self.url_index = url_index
@@ -87,7 +85,7 @@ class Order(DBObject):
             *args,
             **kwargs
             ):
-        DBObject.__init__(self, *args, **kwargs)
+        super(Order, self).__init__(*args, **kwargs)
         self.object = object
         self.object_id = object_id
         self.done = done
