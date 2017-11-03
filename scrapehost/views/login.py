@@ -38,3 +38,7 @@ def show_logout():
     del session['user_id']
 
     return redirect('/')
+
+@bp.route('/forgot-password', methods=['POST', 'GET'])
+def show_forgot_password():
+    return render_template('forgot-password.html')
