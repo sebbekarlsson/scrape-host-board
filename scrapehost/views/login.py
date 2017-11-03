@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, session, redirect
 from scrapehost.mongo import db
-from scrapehost.password import check_password
+from scrapehost.password import check_password, get_hashed_password
 from scrapehost.utils import get_random_token 
 
 
@@ -62,8 +62,36 @@ def show_forgot_password():
 
             msg = 'We have sent you an email'
 
-    return render_template('forgot-password.html', msg=msg)
+    return render_template('forgot_password.html', msg=msg)
 
 @bp.route('/reset-password/<forgot_password_token>', methods=['POST', 'GET'])
 def show_reset_password(forgot_password_token):
-    return forgot_password_token
+    errors = []
+    msg = None
+
+    existing_user = db.collections.find_one({
+        'structure': '#User',
+        'forgot_password_token': forgot_password_token
+    })
+
+    if not existing_user:
+        return 'Access Denied'
+
+    if request.method == 'POST':
+        if request.form.get('reset'):
+            new_password = request.form.get('user-password')
+
+            db.collections.update_one({
+                'structure': '#User',
+                '_id': existing_user['_id']
+            },
+            {
+                '$set': {
+                    'password': get_hashed_password(new_password),
+                    'forgot_password_token': None
+                }
+            })
+
+            msg = 'Password has been changed'
+
+    return render_template('reset_password.html', msg=msg)
