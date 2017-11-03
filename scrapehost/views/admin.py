@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, request, Response
-from scrapehost.utils import login_required, agreement_required, get_current_user, get_scraper_query_presets, get_scraper_plans, get_user_agreement
+from scrapehost.utils import login_required, agreement_required, get_current_user, get_scraper_query_presets, get_scraper_plans, get_user_agreement, get_random_token
 from scrapehost.mongo import db
 from scrapehost.models import Scraper, Order
 from scrapehost.password import check_password, get_hashed_password
@@ -161,10 +161,27 @@ def show_download_scraper_data(scraper_id):
 def show_messages():
     return render_template('admin/messages.html')
 
-@bp.route('/api')
+@bp.route('/api', methods=['POST', 'GET'])
 @login_required
 @agreement_required
 def show_api():
+    current_user = get_current_user()
+
+    if request.method == 'POST':
+        if request.form.get('new-token'):
+            new_token = get_random_token()
+
+            db.collections.update_one({
+                'structure': '#User',
+                '_id': current_user['_id']
+            },
+            {
+                '$set': {
+                    'token': new_token
+                }
+            }
+            )
+            
     return render_template('admin/api.html')
 
 @bp.route('/settings', methods=['POST', 'GET'])
