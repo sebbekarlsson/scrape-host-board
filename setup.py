@@ -16,7 +16,7 @@ setup(
         'pytest',
         'braintreehttp',
         'responses',
-        'paypalrestsdk==1.1.0'
+        'paypalrestsdk==1.12.0'
     ],
     packages=[
         'scrapehost'
