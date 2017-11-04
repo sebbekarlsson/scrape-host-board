@@ -27,6 +27,7 @@ class ScraperInstance(object):
         self.location = scraper['location']
         self.query = scraper['query']
         self.sleep_time = scraper['sleep_time'] if 'sleep_time' in scraper else 0
+        self.last_scrape_time = scraper['last_scrape_time'] if 'last_scrape_time' in scraper else datetime.datetime.now()
         self.data = scraper['data']
         self.robotstxt = RobotsTXTParser()
         self.error = scraper['error'] if 'error' in scraper else None
@@ -137,6 +138,18 @@ class ScraperInstance(object):
         )
 
     def tick(self):
+        now = datetime.datetime.now()
+        last = self.last_scrape_time
+        td = (now - last)
+
+        days, hours, minutes = td.days, td.seconds // 3600, td.seconds % 3600 / 60.0
+
+        print(minutes)
+        
+        if minutes < self.sleep_time:
+            print('{} is sleeping'.format(self.name))
+            return False
+
         try:
             current_url = self.found_urls[self.url_index]
         except IndexError:
