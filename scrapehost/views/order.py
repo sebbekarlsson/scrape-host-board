@@ -29,34 +29,6 @@ def show_order_scraper():
     scraper_price = order['price']
     order_type = order['object']['structure']
 
-
-    '''payment = Payment({
-        "intent": "order",
-        "payer": {
-            "payment_method": "paypal"
-        },
-        "redirect_urls": {
-            "return_url": "{}/order/return".format(config['host_full']),
-            "cancel_url": "{}/order/cancel".format(config['host_full'])
-        },
-        "transactions": [{
-            "item_list": {
-                "items": [{
-                    "name": order_type,
-                    "sku": order_type,
-                    "price": str(scraper_price),
-                    "currency": "USD",
-                    "quantity": 1
-                }]
-            },
-            "amount": {
-                "currency": "USD",
-                "total": str(scraper_price)
-            },
-            "description": "Scraper for scraping web information."
-        }]
-    }, api=api)'''
-
     billing_plan = BillingPlan({
         "name": "Fast Speed Plan",
         "description": "Create Plan for Regular",
@@ -145,81 +117,11 @@ def show_order_scraper():
                     approval_url = link.href
                     return redirect(approval_url)
 
-    '''try:
-        if payment.create():
-            db.collections.update_one({
-                'structure': '#Order',
-                '_id': order['_id']
-            },
-            {
-                '$set': {
-                    'payment_id': payment['id']    
-                }
-            })
-            
-            if not order['object_id']:
-                res = db.collections.insert_one(order['object'])
-
-                db.collections.update_one({
-                    'structure': '#Order',
-                    '_id': order['_id']
-                },
-                {
-                    '$set': {
-                        'object_id': res.inserted_id    
-                    }
-                })
-            else:
-                db.collections.update_one({
-                    'structure': order['object']['structure'],
-                    '_id': order['object_id']
-                },
-                {
-                    '$set': {
-                        'plan': int(order['object']['plan'])
-                    }
-                })
-
-            for link in payment.links:
-                if link.method == "REDIRECT":
-                    redirect_url = str(link.href)
-                    return redirect(redirect_url)
-    except ServerError as e:
-        return 'Paypal has some problems right now, try again later' 
-    else:
-        return 'ERROR'
-    '''
-
+    return 'error'
 
 @bp.route('/return', methods=['POST', 'GET'])
 @login_required
 def show_return():
-    '''payment_id = request.args.get('paymentId')
-    payer_id = request.args.get('PayerID')
-    
-    try:
-        payment = paypalrestsdk.BillingPlan.find(
-            payment_id,
-            api=api
-        )
-
-        if payment.execute({'payer_id': payer_id}):
-            order = db.collections.find_one({
-                'structure': '#Order',
-                'payment_id': payment_id
-            })
-
-            if 'object_id' not in order:
-                return 'order has no object id'
-
-            return redirect('/admin/scrapers/edit/{}'.format(order['object_id']))
-
-        else:
-            return str(payment.error)
-
-    except ServerError as e:
-        return 'Paypal has some problems right now, try again later'
-    '''
     payment_token = request.args.get('token', '')
     billing_agreement_response = BillingAgreement.execute(payment_token)
     print('AGREEMENT', billing_agreement_response)
