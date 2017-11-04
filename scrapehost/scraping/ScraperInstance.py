@@ -138,7 +138,7 @@ class ScraperInstance(object):
         )
 
     def tick(self):
-        if self.sleep_time != 0:
+        if self.sleep_time != 0 and self.last_scrape_time is not None:
             now = datetime.datetime.now()
             last = self.last_scrape_time
             td = (now - last)
