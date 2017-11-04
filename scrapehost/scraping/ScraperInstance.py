@@ -11,6 +11,7 @@ from scrapehost.mongo import db
 import urlparse
 from scrapehost.scraping.robotstxt import RobotsTXTParser
 import os
+import datetime
 
 
 class ScraperInstance(object):
@@ -25,6 +26,7 @@ class ScraperInstance(object):
         self.domain_restrict = scraper['domain_restrict']
         self.location = scraper['location']
         self.query = scraper['query']
+        self.sleep_time = scraper['sleep_time'] if 'sleep_time' in scraper else 0
         self.data = scraper['data']
         self.robotstxt = RobotsTXTParser()
         self.error = scraper['error'] if 'error' in scraper else None
@@ -128,7 +130,8 @@ class ScraperInstance(object):
                 'url_index': int(self.url_index) + 1,
                 'found_urls': self.found_urls,
                 'data': self.data,
-                'error': self.error
+                'error': self.error,
+                'last_scrape_time': datetime.datetime.now()
             }
         }
         )

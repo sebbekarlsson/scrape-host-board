@@ -116,6 +116,7 @@
                         <tr>
                             <th>URL Index</th>
                             <th>URL</th>
+                            <th>Last scrape</th>
                             <th>Data</th>
                         </tr>
                     </thead>
@@ -123,6 +124,7 @@
                         <tr>
                             <td>{{ scraper.url_index }}</td>
                             <td>{{ scraper.found_urls[scraper.url_index] }}</td>
+                            <td>{{ scraper.last_scrape_time }}</td>
                             <td>{{ scraper.data | length }}</td>
                         </tr>
                     </tbody>
