@@ -125,6 +125,20 @@ def show_order_scraper():
         print(billing_a_resp, billing_agreement.error, billing_agreement)
 
         if billing_a_resp:
+            db.collections.update_one({
+                'structure': '#Order',
+                '_id': order['_id']
+            },
+            {
+                '$set': {
+                    'billing_plan_id': billing_plan.id,
+                    'billing_agreement_id': billing_agreement.id
+                }
+            })
+
+            if not order['object_id']:
+                res = db.collections.insert_one(order['object'])
+
             print(billing_agreement)
             for link in billing_agreement.links:
                 if link.rel == "approval_url":
@@ -208,7 +222,9 @@ def show_return():
     '''
     payment_token = request.args.get('token', '')
     billing_agreement_response = BillingAgreement.execute(payment_token)
-    print(billing_agreement_response)
+    print('AGREEMENT', billing_agreement_response)
+    if billing_agreement_response:
+        return redirect('/admin/scrapers')
     return billing_agreement_response.id
 
 @bp.route('/cancel', methods=['POST', 'GET'])
