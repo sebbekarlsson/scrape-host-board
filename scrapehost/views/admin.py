@@ -67,6 +67,7 @@ def show_scrapers_edit(scraper_id):
             location = request.form.get('scraper-location')
             query = request.form.get('scraper-query')
             plan = request.form.get('scraper-plan')
+            sleep_time = 0
             status = 0
             domain_restrict = False
             plan_modified = False
@@ -79,6 +80,9 @@ def show_scrapers_edit(scraper_id):
 
             if request.form.get('scraper-domain_restrict'):
                 domain_restrict = True
+
+            if request.form.get('scraper-sleep_time'):
+                sleep_time = float(request.form.get('scraper-sleep_time'))
 
             if scraper_id:
                 _scraper = db.collections.find_one({
@@ -97,6 +101,7 @@ def show_scrapers_edit(scraper_id):
                         status=status,
                         domain_restrict=domain_restrict,
                         query=query,
+                        sleep_time=sleep_time,
                         plan=int(plan)
                     )
 
@@ -126,6 +131,7 @@ def show_scrapers_edit(scraper_id):
                             'status': status,
                             'domain_restrict': domain_restrict,
                             'query': query,
+                            'sleep_time': sleep_time,
                             'plan': int(plan)
                         }
                     }

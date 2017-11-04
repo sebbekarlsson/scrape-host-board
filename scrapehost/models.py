@@ -54,6 +54,7 @@ class Scraper(DBObject):
             user_id=None,
             status=1,
             query=None,
+            sleep_time=0, # minutes
             data=[],
             domain_restrict=False,
             plan=1, # 0 = basic, 1 = standard, 2 = pro
@@ -70,6 +71,7 @@ class Scraper(DBObject):
         self.user_id = user_id
         self.status = status
         self.query = query
+        self.sleep_time = sleep_time
         self.data = data
         self.domain_restrict = domain_restrict
         self.plan = plan

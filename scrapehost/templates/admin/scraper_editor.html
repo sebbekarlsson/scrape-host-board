@@ -39,6 +39,14 @@
                 {% endif %}
             </div>
         </label>
+        <label for='scraper-sleep_time'>
+            <p>Sleep time (minutes)</p>
+            <input
+                {% if scraper %}
+                    value='{{ scraper.sleep_time }}'
+                {% endif %}
+            class='input-text input-text-contrast' type='number' name='scraper-sleep_time'/>
+        </label>
         <label>
             <p class='push-down'>Restrict to one domain</p>
             <input
