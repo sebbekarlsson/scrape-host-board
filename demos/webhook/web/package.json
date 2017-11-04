@@ -1,0 +1,17 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "firebase": "^4.6.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-scripts": "1.0.16"
+  },
+  "scripts": {
+    "start": "NIDE_ENV=src react-scripts start",
+    "build": "NIDE_ENV=src react-scripts build",
+    "test": "NIDE_ENV=src react-scripts test --env=jsdom",
+    "eject": "NIDE_ENV=src react-scripts eject"
+  }
+}
