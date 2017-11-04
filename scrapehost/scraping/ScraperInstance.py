@@ -12,7 +12,7 @@ import urlparse
 from scrapehost.scraping.robotstxt import RobotsTXTParser
 import os
 import datetime
-
+import json
 
 class ScraperInstance(object):
 
@@ -58,7 +58,7 @@ class ScraperInstance(object):
 
         if collect_data and ext not in self.blocked_extensions:
             all_ok = True
-            
+
             self.robotstxt.set_robots_url('{}://{}/robots.txt'.format(
                 parsed_url.scheme,
                 parsed_url.netloc
@@ -90,13 +90,13 @@ class ScraperInstance(object):
 
                         if not href:
                             continue
-                        
+
                         if 'http' not in href:
                             href = urlparse.urljoin(url, href)
-                        
+
                         if href not in self.found_urls:
                             self.found_urls.append(href)
-                    
+
                     # perform user query
                     document = soup
                     if self.query:
@@ -106,6 +106,7 @@ class ScraperInstance(object):
                                 exec(self.query)
                             except Exception as e:
                                 self.error = str(e)
+                                print("TODO: trigger webhook with onError event")
                             else:
                                 self.error = None
                         else:
@@ -136,6 +137,7 @@ class ScraperInstance(object):
             }
         }
         )
+        print("TODO: trigger webhook with onChange event")
 
     def tick(self):
         if self.sleep_time != 0 and self.last_scrape_time is not None:
@@ -146,7 +148,7 @@ class ScraperInstance(object):
             days, hours, minutes = td.days, td.seconds // 3600, td.seconds % 3600 / 60.0
 
             print(minutes)
-            
+
             if minutes < self.sleep_time:
                 print('{} is sleeping'.format(self.name))
                 return False
@@ -166,5 +168,5 @@ class ScraperInstance(object):
                 print('Will pop: {}'.format(current_url))
                 self.found_urls.pop(self.url_index)
                 collect_data = False
-        
+
         self.visit_url(current_url, collect_data)
