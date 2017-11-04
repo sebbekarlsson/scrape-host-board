@@ -65,6 +65,7 @@ def show_scrapers_edit(scraper_id):
         if request.form.get('save'):
             name = request.form.get('scraper-name')
             location = request.form.get('scraper-location')
+            webhook = request.form.get('scraper-webhook')
             query = request.form.get('scraper-query')
             plan = request.form.get('scraper-plan')
             sleep_time = 0
@@ -74,7 +75,7 @@ def show_scrapers_edit(scraper_id):
 
             if 'http' not in location:
                 errors.append('Location needs to be a valid http/https Address')
-            
+
             if request.form.get('scraper-status'):
                 status = 1
 
@@ -97,6 +98,7 @@ def show_scrapers_edit(scraper_id):
                     scraper = Scraper(
                         name=name,
                         location=location,
+                        webhook=webhook,
                         user_id=current_user['_id'],
                         status=status,
                         domain_restrict=domain_restrict,
@@ -119,7 +121,7 @@ def show_scrapers_edit(scraper_id):
                     order_id = str(res.inserted_id)
 
                     return redirect('/order?order_id={}'.format(order_id))
-                    
+
                 else:
                     db.collections.update_one({
                         '_id': ObjectId(scraper_id)
@@ -128,6 +130,7 @@ def show_scrapers_edit(scraper_id):
                         '$set': {
                             'name': name,
                             'location': location,
+                            'webhook': webhook,
                             'status': status,
                             'domain_restrict': domain_restrict,
                             'query': query,
@@ -143,7 +146,7 @@ def show_scrapers_edit(scraper_id):
             '_id': ObjectId(scraper_id)
         })
 
-    
+
     presets = get_scraper_query_presets()
 
     return render_template('admin/scraper_editor.html', scraper=scraper, presets=presets, plans=plans, errors=errors)
@@ -151,7 +154,7 @@ def show_scrapers_edit(scraper_id):
 @bp.route('/scrapers/download/<scraper_id>', methods=['POST', 'get'])
 def show_download_scraper_data(scraper_id):
     if scraper_id:
-        
+
         scraper = db.collections.find_one({
             'structure': '#Scraper',
             '_id': ObjectId(scraper_id)
@@ -187,7 +190,7 @@ def show_api():
                 }
             }
             )
-            
+
     return render_template('admin/api.html')
 
 @bp.route('/settings', methods=['POST', 'GET'])
@@ -201,7 +204,7 @@ def show_settings():
     if request.method == 'POST':
         old_pass = request.form.get('old-password')
         new_password = request.form.get('new-password')
-        
+
         if not check_password(current_user['password'], old_pass):
             errors.append('Wrong password')
         else:
@@ -231,7 +234,7 @@ def show_agreement():
 
             if request.form.get('agreement-agree'):
                 agreed = True
-            
+
             db.collections.update_one({
                 'structure': '#User',
                 '_id': current_user['_id']
@@ -240,7 +243,7 @@ def show_agreement():
                 '$set': {
                     'accepted_agreement': agreed,
                     'agreement_content': agreement_content
-                }    
+                }
             })
 
     return render_template('admin/agreement.html', agreement_content=agreement_content)
