@@ -3,6 +3,30 @@
 
 {% block site_content %}
     <div class='site-section'>
-    scraper query
+        <div class='site-content'>
+            <div class='text-content'>
+                <h1 class='push-down'>Scraper Queries</h1>
+                <p>Queries are written in python, and can look something like this:</p>
+                <pre>images = document.find_all('img')
+
+
+for img in images:
+    src = img.get('src')
+
+    if src:
+        if 'http' not in src:
+            src = urlparse.urljoin(url, src)
+
+        self.data.append(src)</pre>
+                <p>
+                    <br>
+                    This query will look for images and store them in
+                    the scrapers own database.<br>
+
+                    Storing data in the database is done here:
+                    <pre>self.data.append(src)</pre>
+                </p>
+            </div>
+        </div>
     </div>
 {% endblock %}

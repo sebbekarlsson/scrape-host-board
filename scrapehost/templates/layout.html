@@ -18,13 +18,19 @@
         <link
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet">
-
-        {% assets "js_all" %}
-            <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-        {% endassets %}
+        
+        {% if config['dev_mode'] %}
+            {% assets "js_all" %}
+                <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+            {% endassets %}
+        {% else %}
+            <script type='text/javascript' src='{{ url_for('static', filename='js/packed.js') }}'></script>
+        {% endif %}
 
         <meta charset='UTF-8'/>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <meta name="description" content="Automated web scraping, rent a scraper!">
+        <meta name="keywords" content="scraping,crawling,spiders,renting,service">
     </head>
     <body>
         {% block body %}

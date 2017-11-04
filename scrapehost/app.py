@@ -1,4 +1,5 @@
 from flask import Flask
+from scrapehost.config import config 
 from scrapehost.utils import is_loggedin, get_current_user
 from scrapehost.views.api import bp as api_bp
 from scrapehost.views.index import bp as index_bp
@@ -26,3 +27,4 @@ app.register_blueprint(order_bp)
 
 app.jinja_env.globals.update(is_loggedin=is_loggedin)
 app.jinja_env.globals.update(get_current_user=get_current_user)
+app.jinja_env.globals.update(config=config)
