@@ -138,17 +138,18 @@ class ScraperInstance(object):
         )
 
     def tick(self):
-        now = datetime.datetime.now()
-        last = self.last_scrape_time
-        td = (now - last)
+        if self.sleep_time != 0:
+            now = datetime.datetime.now()
+            last = self.last_scrape_time
+            td = (now - last)
 
-        days, hours, minutes = td.days, td.seconds // 3600, td.seconds % 3600 / 60.0
+            days, hours, minutes = td.days, td.seconds // 3600, td.seconds % 3600 / 60.0
 
-        print(minutes)
-        
-        if minutes < self.sleep_time:
-            print('{} is sleeping'.format(self.name))
-            return False
+            print(minutes)
+            
+            if minutes < self.sleep_time:
+                print('{} is sleeping'.format(self.name))
+                return False
 
         try:
             current_url = self.found_urls[self.url_index]
