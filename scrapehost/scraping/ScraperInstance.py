@@ -12,7 +12,7 @@ import urlparse
 from scrapehost.scraping.robotstxt import RobotsTXTParser
 import os
 import datetime
-import json
+import json # -- DO NOT REMOVE -- #
 
 
 class ScraperInstance(object):
