@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 from scrapehost.mongo import db
 import urlparse
 from scrapehost.scraping.robotstxt import RobotsTXTParser
+from scrapehost.paypal import is_billing_due
 import os
 
 
@@ -28,6 +29,8 @@ class ScraperInstance(object):
         self.data = scraper['data']
         self.robotstxt = RobotsTXTParser()
         self.error = scraper['error'] if 'error' in scraper else None
+        self.billing_plan_id = scraper['billing_plan_id'] if 'billing_plan_id' in scraper else None
+        self.billing_agreement_id = scraper['billing_agreement_id'] if 'billing_agreement_id' in scraper else None
         self.blocked_extensions = [
             '.m4a',
             '.m4v',
@@ -134,6 +137,9 @@ class ScraperInstance(object):
         )
 
     def tick(self):
+        if is_billing_due(self.billing_agreement_id):
+            print('Billing due for: {}'.format(self.name))
+            return False
         try:
             current_url = self.found_urls[self.url_index]
         except IndexError:

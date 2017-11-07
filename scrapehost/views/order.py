@@ -109,6 +109,9 @@ def show_order_scraper():
             })
 
             if not order['object_id']:
+                order['object']['billing_plan_id'] = billing_plan.id
+                order['object']['billing_agreement_id'] = billing_agreement.id
+
                 res = db.collections.insert_one(order['object'])
 
             print(billing_agreement)
@@ -127,7 +130,8 @@ def show_return():
     print('AGREEMENT', billing_agreement_response)
     if billing_agreement_response:
         return redirect('/admin/scrapers')
-    return billing_agreement_response.id
+
+    return 'error'
 
 @bp.route('/cancel', methods=['POST', 'GET'])
 @login_required

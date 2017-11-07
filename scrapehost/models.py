@@ -58,6 +58,8 @@ class Scraper(DBObject):
             domain_restrict=False,
             plan=1, # 0 = basic, 1 = standard, 2 = pro
             error=None,
+            billing_plan_id=None,
+            billing_agreement_id=None,
             *args,
             **kwargs
             ):
@@ -74,6 +76,8 @@ class Scraper(DBObject):
         self.domain_restrict = domain_restrict
         self.plan = plan
         self.error = error
+        self.billing_plan_id = billing_plan_id
+        self.billing_agreement_id = billing_agreement_id
 
 class Order(DBObject):
     def __init__(
