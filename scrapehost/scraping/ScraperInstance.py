@@ -139,6 +139,16 @@ class ScraperInstance(object):
     def tick(self):
         if is_billing_due(self.billing_agreement_id):
             print('Billing due for: {}'.format(self.name))
+            db.collections.update_one({
+                'structure': '#Scraper',
+                '_id': self.scraper['_id']
+            },
+            {
+                '$set': {
+                    'status': 0,
+                }
+            }
+            )
             return False
         try:
             current_url = self.found_urls[self.url_index]

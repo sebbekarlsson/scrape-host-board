@@ -30,14 +30,14 @@ def show_order_scraper():
     order_type = order['object']['structure']
 
     billing_plan = BillingPlan({
-        "name": "Fast Speed Plan",
-        "description": "Create Plan for Regular",
+        "name": "Scraping plan",
+        "description": "Create Plan for Scraper",
         "merchant_preferences": {
             "auto_bill_amount": "yes",
             "cancel_url": "{}/order/cancel".format(config['host_full']),
             "initial_fail_amount_action": "continue",
             "max_fail_attempts": "1",
-            "return_url": "{}/order/return".format(config['host_full']),
+            "return_url": "{}/order/return/{}".format(config['host_full'], order_id),
             "setup_fee": {
                 "currency": "USD",
                 "value": str(scraper_price)
@@ -81,7 +81,7 @@ def show_order_scraper():
     if billing_resp:
         billing_plan.activate()
         billing_agreement = BillingAgreement({
-            "name": "Organization plan name",
+            "name": "Scraper subscription",
             "description": "Scraper subscription",
             "start_date": (datetime.now() + timedelta(hours=1)).strftime('%Y-%m-%dT%H:%M:%SZ'),
             "plan": {
@@ -96,6 +96,8 @@ def show_order_scraper():
         
         print(billing_a_resp, billing_agreement.error, billing_agreement)
 
+        print('__AGREMENT__', billing_agreement)
+
         if billing_a_resp:
             db.collections.update_one({
                 'structure': '#Order',
@@ -103,16 +105,15 @@ def show_order_scraper():
             },
             {
                 '$set': {
-                    'billing_plan_id': billing_plan.id,
-                    'billing_agreement_id': billing_agreement.id
+                    'billing_plan_id': billing_plan.id
                 }
             })
 
-            if not order['object_id']:
-                order['object']['billing_plan_id'] = billing_plan.id
-                order['object']['billing_agreement_id'] = billing_agreement.id
-
-                res = db.collections.insert_one(order['object'])
+            #if not order['object_id']:
+            #    order['object']['billing_plan_id'] = billing_plan.id
+            #    order['object']['billing_agreement_id'] = billing_agreement.id
+            #
+            #    res = db.collections.update_one(order['object'])
 
             print(billing_agreement)
             for link in billing_agreement.links:
@@ -122,18 +123,34 @@ def show_order_scraper():
 
     return 'error'
 
-@bp.route('/return', methods=['POST', 'GET'])
+@bp.route('/return/<order_id>', methods=['POST', 'GET'])
 @login_required
-def show_return():
+def show_return(order_id):
     payment_token = request.args.get('token', '')
     billing_agreement_response = BillingAgreement.execute(payment_token)
     print('AGREEMENT', billing_agreement_response)
+    
     if billing_agreement_response:
-        return redirect('/admin/scrapers')
+        agreement_id = billing_agreement_response.agreement_details.id
+
+        order = db.collections.find_one({
+            'structure': '#Order',
+            '_id': ObjectId(order_id)
+        })
+
+        if not order:
+            return 'No such order'
+        
+        #order['object']['billing_plan_id'] = billing_plan.id
+        order['object']['billing_agreement_id'] = agreement_id
+
+        res = db.collections.insert_one(order['object'])
+        
+        return redirect('/admin/scrapers/edit/{}'.format(res.inserted_id))
 
     return 'error'
 
-@bp.route('/cancel', methods=['POST', 'GET'])
+@bp.route('/cancel/<order_id>', methods=['POST', 'GET'])
 @login_required
-def show_cancel():
+def show_cancel(order_id):
     return redirect('/')

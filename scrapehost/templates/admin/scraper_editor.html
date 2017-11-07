@@ -54,7 +54,7 @@
             type="checkbox" name="scraper-domain_restrict" class="input-toggle" id='scraper-domain_restrict'>
             <label for="scraper-domain_restrict"></label>
         </label>
-        <div class='split push-down' id='scraper-plan-selector'>
+        <!--<div class='split push-down' id='scraper-plan-selector'>
             {% for plan in plans %}
                 <section>
                     <div class='card scraper-plan-card'
@@ -76,7 +76,8 @@
                 value='1'
             {% endif %}
             type='hidden' name='scraper-plan'>
-        </div>
+        </div>-->
+        <input type='hidden' name='scraper-plan' value='1'/>
         <label>
             <p class='push-down'>Scraper status (On / Off)</p>
             <input
@@ -94,6 +95,9 @@
         </label>
         <div class='push-down'>
             <input type='submit' class='btn btn-primary' name='save' value='Save'/>
+            {% if not scraper %}
+                <span>{{ plans[1]['price'] }}$ / Month</span>
+            {% endif %}
             <a href='/admin/scrapers/download/{{ scraper._id }}' target='_blank' class='btn btn-primary push-right'><i class='material-icons'>cloud_download</i>Download Data ({{ scraper.data | length }})</a>
             <input type='submit' class='btn btn-warning push-right' name='delete-data' value='Empty data'/>
             <input type='submit' class='btn btn-warning push-right' name='delete' value='Delete'/>
